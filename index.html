@@ -118,64 +118,72 @@
             font-size: 18px;
         }
         
-        /* Order Row */
-        .order-row {
+        /* ===== ONLINE PAYMENT ROW - BARAY BOXES ===== */
+        .online-payment-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 2px solid #ff9800;
+        }
+        
+        .online-payment-row .row-header {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
-            gap: 10px;
+            gap: 12px;
             align-items: center;
-            padding: 15px;
-            background: white;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        .order-row input, .order-row select {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+        
+        .online-payment-row input, .online-payment-row select {
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
             width: 100%;
+            font-size: 16px;
+        }
+        
+        .online-payment-row input:focus, .online-payment-row select:focus {
+            outline: none;
+            border-color: #e94560;
+        }
+        
+        /* Phone/Reference - chota box */
+        .online-payment-row .small-field {
+            padding: 10px 14px;
             font-size: 14px;
         }
+        
         .remove-order {
             background: #e94560;
             color: white;
             border: none;
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .add-btn {
-            background: #2ecc71;
-            color: white;
-            border: none;
-            padding: 12px 25px;
+            padding: 14px;
             border-radius: 10px;
             cursor: pointer;
-            font-weight: 600;
-            margin-top: 10px;
-            font-size: 14px;
+            font-size: 18px;
         }
         
-        /* Warning Button */
         .warning-btn {
             background: #ff9800 !important;
             color: white !important;
-            font-size: 12px !important;
-            padding: 6px 12px !important;
+            font-size: 13px !important;
+            padding: 12px !important;
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            50% { opacity: 0.8; }
         }
         
         /* Image Upload */
         .image-upload-area {
             border: 2px dashed #ccc;
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 25px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
@@ -186,24 +194,57 @@
             background: #fff5f5;
         }
         .image-upload-area i {
-            font-size: 24px;
+            font-size: 32px;
             color: #999;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .image-preview {
             max-width: 100%;
-            max-height: 150px;
-            border-radius: 8px;
-            margin-top: 10px;
+            max-height: 200px;
+            border-radius: 10px;
+            margin-top: 15px;
         }
         .proof-badge {
             display: inline-block;
             background: #4caf50;
             color: white;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            margin-top: 5px;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        
+        /* Order Row */
+        .order-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
+            gap: 12px;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .order-row input, .order-row select {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 15px;
+        }
+        
+        .add-btn {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+            font-size: 15px;
         }
         
         /* Summary Box */
@@ -342,7 +383,8 @@
         
         /* Responsive */
         @media (max-width: 768px) {
-            .order-row { grid-template-columns: 1fr; gap: 5px; }
+            .online-payment-row .row-header { grid-template-columns: 1fr; }
+            .order-row { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: 1fr 1fr; }
             .header { flex-direction: column; gap: 15px; text-align: center; }
             .rider-card { flex-direction: column; gap: 15px; text-align: center; }
@@ -410,10 +452,6 @@
                         <div class="value" id="statOpening">Rs. 0</div>
                     </div>
                     <div class="stat-card">
-                        <h3>Total Orders</h3>
-                        <div class="value" id="statOrders">0</div>
-                    </div>
-                    <div class="stat-card">
                         <h3>Online Payments</h3>
                         <div class="value" id="statOnline">Rs. 0</div>
                     </div>
@@ -445,11 +483,12 @@
                         </div>
                     </div>
 
-                    <!-- Online Payments Section - WITH WARNING & IMAGE PROOF -->
+                    <!-- Online Payments Section - BARAY BOXES -->
                     <div class="card">
                         <h3>💳 Online Payments (Customers ne online pay kiya)</h3>
-                        <p style="color: #666; font-size: 13px; margin-bottom: 15px;">
-                            ⚠️ <strong>Warning:</strong> "Clear" ya "Cancel" dabaane se sara likha hua data chala jayega! Pehle photo upload karein.
+                        <p style="color: #ff9800; font-size: 14px; margin-bottom: 15px; font-weight: 600;">
+                            <i class="fas fa-exclamation-triangle"></i> 
+                            Warning: "Clear" dabaane se sara likha hua data chala jayega! Pehle photo upload karein.
                         </p>
                         <div id="onlinePaymentsContainer">
                             <!-- Online payment rows will be added here -->
@@ -457,25 +496,12 @@
                         <button type="button" class="add-btn" onclick="addOnlinePayment()">+ Online Payment Add Karein</button>
                     </div>
 
-                    <!-- Orders Section - WITHOUT DELIVERY CHARGES -->
-                    <div class="card">
-                        <h3>📦 Delivered Orders</h3>
-                        <div id="ordersContainer">
-                            <!-- Orders will be added here -->
-                        </div>
-                        <button type="button" class="add-btn" onclick="addOrder()">+ Naya Order Add Karein</button>
-                    </div>
-
-                    <!-- Summary - WITHOUT DELIVERY CHARGES -->
+                    <!-- Summary -->
                     <div class="summary-box">
                         <h4>📊 Daily Summary</h4>
                         <div class="summary-item">
                             <span>Opening Balance:</span>
                             <span id="sumOpening">Rs. 0</span>
-                        </div>
-                        <div class="summary-item">
-                            <span>+ Total Order Amount:</span>
-                            <span id="sumTotalOrders">Rs. 0</span>
                         </div>
                         <div class="summary-item" style="color: #ff6b6b;">
                             <span>- Online Payments (Customer ne diya):</span>
@@ -574,7 +600,7 @@
                     <div id="allReports"></div>
                 </div>
 
-                <!-- Online Payments Tab - WITH RECEIVED BUTTON -->
+                <!-- Online Payments Tab -->
                 <div id="onlineTab" class="tab-content hidden">
                     <div class="card">
                         <h3>💳 Online Payments Management</h3>
@@ -709,6 +735,9 @@
             document.getElementById('riderName').textContent = currentUser.name;
             document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ur-PK', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             
+            // Restore saved form data if any
+            restoreFormData();
+            
             if (document.getElementById('ordersContainer').children.length === 0) {
                 addOrder();
             }
@@ -719,6 +748,39 @@
             loadMySubmissions();
         }
 
+        // ==================== FORM DATA SAVE/RESTORE ====================
+        function saveFormData() {
+            const data = {
+                openingBalance: document.getElementById('openingBalance')?.value || '',
+                fuelAmount: document.getElementById('fuelAmount')?.value || '',
+                otherExpenses: document.getElementById('otherExpenses')?.value || '',
+                riderNotes: document.getElementById('riderNotes')?.value || ''
+            };
+            localStorage.setItem('hfc_form_' + currentUser.id, JSON.stringify(data));
+        }
+
+        function restoreFormData() {
+            const saved = localStorage.getItem('hfc_form_' + currentUser.id);
+            if (saved) {
+                const data = JSON.parse(saved);
+                if (data.openingBalance) document.getElementById('openingBalance').value = data.openingBalance;
+                if (data.fuelAmount) document.getElementById('fuelAmount').value = data.fuelAmount;
+                if (data.otherExpenses) document.getElementById('otherExpenses').value = data.otherExpenses;
+                if (data.riderNotes) document.getElementById('riderNotes').value = data.riderNotes;
+            }
+        }
+
+        function clearSavedFormData() {
+            localStorage.removeItem('hfc_form_' + currentUser.id);
+        }
+
+        // Auto-save form data on input change
+        document.addEventListener('input', function(e) {
+            if (currentUser && currentUser.role === 'rider') {
+                saveFormData();
+            }
+        });
+
         function addOrder() {
             const container = document.getElementById('ordersContainer');
             const orderId = Date.now() + Math.random();
@@ -726,7 +788,6 @@
             const orderDiv = document.createElement('div');
             orderDiv.className = 'order-row';
             orderDiv.id = `order-${orderId}`;
-            // REMOVED delivery charges field
             orderDiv.innerHTML = `
                 <input type="text" placeholder="Order ID / Customer Name" class="order-customer" required>
                 <input type="number" placeholder="Amount (Rs.)" class="order-amount" required onchange="calculateSummary()">
@@ -746,36 +807,35 @@
             calculateSummary();
         }
 
-        // ==================== ONLINE PAYMENT WITH WARNING & IMAGE PROOF ====================
+        // ==================== ONLINE PAYMENT - BARAY BOXES ====================
         function addOnlinePayment() {
             const container = document.getElementById('onlinePaymentsContainer');
             const payId = Date.now() + Math.random();
             
             const payDiv = document.createElement('div');
-            payDiv.className = 'order-row';
+            payDiv.className = 'online-payment-row';
             payDiv.id = `online-${payId}`;
-            payDiv.style.background = '#fff3cd';
-            payDiv.style.border = '2px solid #ff9800';
+            
             payDiv.innerHTML = `
-                <div style="grid-column: 1 / -1; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr; gap: 10px; align-items: center;">
-                    <input type="text" placeholder="Customer Name / Detail *" class="online-customer" required>
-                    <input type="number" placeholder="Amount (Rs.) *" class="online-amount" required onchange="calculateSummary()">
-                    <select class="online-method">
+                <div class="row-header">
+                    <input type="text" placeholder="Customer Name / Detail *" class="online-customer" required style="font-size: 16px;">
+                    <input type="number" placeholder="Amount (Rs.) *" class="online-amount" required onchange="calculateSummary()" style="font-size: 16px;">
+                    <select class="online-method" style="font-size: 15px;">
                         <option value="Easypaisa">Easypaisa</option>
                         <option value="JazzCash">JazzCash</option>
                         <option value="Bank">Bank Transfer</option>
                         <option value="Other">Other</option>
                     </select>
-                    <input type="text" placeholder="Ref / Phone" class="online-ref">
+                    <input type="text" placeholder="Ref / Phone" class="online-ref small-field">
                     <button type="button" class="remove-order warning-btn" onclick="confirmRemoveOnline('${payId}')">
                         <i class="fas fa-exclamation-triangle"></i> Clear
                     </button>
                 </div>
-                <div style="grid-column: 1 / -1; margin-top: 10px;">
+                <div style="margin-top: 15px;">
                     <div class="image-upload-area" onclick="document.getElementById('proof-${payId}').click()">
                         <i class="fas fa-camera"></i>
-                        <p style="font-size: 13px; color: #666; margin-top: 5px;">📸 Delivery Proof Photo Upload Karein</p>
-                        <p style="font-size: 11px; color: #999;">Click karein ya yahan drop karein</p>
+                        <p style="font-size: 15px; color: #666; margin-top: 8px; font-weight: 500;">📸 Delivery Proof Photo Upload Karein</p>
+                        <p style="font-size: 13px; color: #999; margin-top: 5px;">Click karein ya yahan drop karein</p>
                         <input type="file" id="proof-${payId}" class="proof-input" accept="image/*" style="display: none;" onchange="handleImageUpload(this, '${payId}')">
                         <img id="preview-${payId}" class="image-preview hidden" style="display: none;">
                         <div id="badge-${payId}" class="proof-badge hidden" style="display: none;">
@@ -821,29 +881,21 @@
             }
         }
 
-        // ==================== CALCULATION - NO DELIVERY CHARGES ====================
+        // ==================== CALCULATION ====================
         function calculateSummary() {
             const opening = parseFloat(document.getElementById('openingBalance').value) || 0;
             const fuel = parseFloat(document.getElementById('fuelAmount').value) || 0;
             const other = parseFloat(document.getElementById('otherExpenses').value) || 0;
             
-            let totalOrders = 0;
-            let onlinePayments = 0;
-            
-            // Calculate orders (NO delivery charges)
-            document.querySelectorAll('#ordersContainer .order-row').forEach(row => {
-                const amount = parseFloat(row.querySelector('.order-amount').value) || 0;
-                totalOrders += amount;
-            });
             
             // Calculate online payments
-            document.querySelectorAll('#onlinePaymentsContainer .order-row').forEach(row => {
+            document.querySelectorAll('#onlinePaymentsContainer .online-payment-row').forEach(row => {
                 const amount = parseFloat(row.querySelector('.online-amount').value) || 0;
                 onlinePayments += amount;
             });
             
-            // Closing = Opening + Orders - OnlinePayments - Fuel - Other (NO delivery charges)
-            const closing = opening + totalOrders - onlinePayments - fuel - other;
+            // Closing = Opening + Orders - OnlinePayments - Fuel - Other
+			const closing = opening - onlinePayments - fuel - other;
             
             // Update display
             document.getElementById('sumOpening').textContent = `Rs. ${opening.toFixed(2)}`;
@@ -864,7 +916,7 @@
             e.preventDefault();
             
             // Check if all online payments have proof images
-            const onlineRows = document.querySelectorAll('#onlinePaymentsContainer .order-row');
+            const onlineRows = document.querySelectorAll('#onlinePaymentsContainer .online-payment-row');
             let missingProof = false;
             onlineRows.forEach(row => {
                 if (!row.dataset.proofImage) {
@@ -878,25 +930,15 @@
                 }
             }
             
-            const orders = [];
-            document.querySelectorAll('#ordersContainer .order-row').forEach(row => {
-                orders.push({
-                    customer: row.querySelector('.order-customer').value,
-                    amount: parseFloat(row.querySelector('.order-amount').value) || 0,
-                    paymentType: row.querySelector('.order-payment').value,
-                    notes: row.querySelector('.order-notes')?.value || ''
-                });
-            });
-            
             const onlinePayments = [];
-            document.querySelectorAll('#onlinePaymentsContainer .order-row').forEach(row => {
+            document.querySelectorAll('#onlinePaymentsContainer .online-payment-row').forEach(row => {
                 onlinePayments.push({
                     customer: row.querySelector('.online-customer').value,
                     amount: parseFloat(row.querySelector('.online-amount').value) || 0,
                     method: row.querySelector('.online-method').value,
                     reference: row.querySelector('.online-ref').value,
                     proofImage: row.dataset.proofImage || null,
-                    receivedStatus: 'pending' // NEW: Track received status
+                    receivedStatus: 'pending'
                 });
             });
             
@@ -910,19 +952,19 @@
                 fuelAmount: parseFloat(document.getElementById('fuelAmount').value) || 0,
                 otherExpenses: parseFloat(document.getElementById('otherExpenses').value) || 0,
                 notes: document.getElementById('riderNotes').value,
-                orders: orders,
                 onlinePayments: onlinePayments,
                 status: 'pending',
-                totalOrderAmount: orders.reduce((sum, o) => sum + o.amount, 0),
                 totalOnlinePayments: onlinePayments.reduce((sum, o) => sum + o.amount, 0),
                 closingBalance: 0
             };
             
-            submission.closingBalance = submission.openingBalance + submission.totalOrderAmount - submission.totalOnlinePayments - submission.fuelAmount - submission.otherExpenses;
-            
+            closingBalance: submission.openingBalance - submission.totalOnlinePayments - submission.fuelAmount - submission.otherExpenses
             const reports = getReports();
             reports.push(submission);
             saveReports(reports);
+            
+            // Clear saved form data
+            clearSavedFormData();
             
             alert('✅ Report successfully submit ho gaya! Admin approve karega.');
             
@@ -945,14 +987,13 @@
                 return;
             }
             
-            let html = '<table><thead><tr><th>Date</th><th>Orders</th><th>Online</th><th>Closing</th><th>Status</th></tr></thead><tbody>';
+            let html = '<table><thead><tr><th>Date</th><th>Online</th><th>Closing</th><th>Status</th></tr></thead><tbody>';
             
             reports.reverse().forEach(sub => {
                 const statusClass = sub.status === 'approved' ? 'status-approved' : sub.status === 'pending' ? 'status-pending' : 'status-rejected';
                 html += `
                     <tr>
                         <td>${sub.displayDate}</td>
-                        <td>${sub.orders.length} (Rs. ${sub.totalOrderAmount})</td>
                         <td>Rs. ${sub.totalOnlinePayments}</td>
                         <td>Rs. ${sub.closingBalance.toFixed(2)}</td>
                         <td><span class="status ${statusClass}">${sub.status.toUpperCase()}</span></td>
@@ -1303,7 +1344,6 @@
             
             let html = '';
             allPayments.reverse().forEach(p => {
-                // Check if this payment is received
                 const isReceived = p.receivedStatus === 'received';
                 const receivedBtn = isReceived ? 
                     `<span class="status status-received"><i class="fas fa-check-double"></i> RECEIVED</span>` :
@@ -1311,7 +1351,6 @@
                         <i class="fas fa-check"></i> Mark Received
                     </button>`;
                 
-                // Proof image display
                 let proofDisplay = '';
                 if (p.proofImage) {
                     proofDisplay = `<div style="margin-top: 8px;">
@@ -1355,112 +1394,69 @@
             container.innerHTML = html;
         }
 
-        // NEW FUNCTION: Mark payment as received (no message)
-        function markPaymentReceived(reportId, paymentIndex) {
+                function markPaymentReceived(reportId, paymentIndex) {
             const reports = getReports();
             const report = reports.find(r => r.id === reportId);
-            
-            if (!report || !report.onlinePayments[paymentIndex]) {
-                alert('Payment nahi mili!');
-                return;
+            if (report && report.onlinePayments[paymentIndex]) {
+                report.onlinePayments[paymentIndex].receivedStatus = 'received';
+                saveReports(reports);
+                renderOnlinePayments();
+                alert('✅ Payment received mark kar diya gaya!');
             }
-            
-            // Mark as received
-            report.onlinePayments[paymentIndex].receivedStatus = 'received';
-            report.onlinePayments[paymentIndex].receivedAt = new Date().toISOString();
-            
-            saveReports(reports);
-            
-            // Re-render
-            renderOnlinePayments();
-            renderAdminReports();
-            
-            // Silent confirmation (no alert message - just visual change)
-            console.log('Payment marked as received:', report.onlinePayments[paymentIndex]);
         }
 
-        function sendWhatsAppReminder(customerEncoded, amount, date, riderEncoded) {
+        function sendWhatsAppReminder(customerEncoded, amount, date, riderNameEncoded) {
             const customer = decodeURIComponent(customerEncoded);
-            const rider = decodeURIComponent(riderEncoded);
-            
-            const message = `Assalam o Alaikum *${customer}*! 🙏
-
-HFC Restaurant ki taraf se reminder hai.
-
-💰 *Aapki payment pending hai:*
-   Amount: *Rs. ${amount}*
-   Date: ${date}
-   Rider: ${rider}
-
-Barah-e-karam jald az jald payment kar dein.
-Shukria! 🍔
-
-— *HFC Restaurant*`;
-            
-            const encodedMsg = encodeURIComponent(message);
-            const url = `https://wa.me/?text=${encodedMsg}`;
-            window.open(url, '_blank');
+            const riderName = decodeURIComponent(riderNameEncoded);
+            const message = encodeURIComponent(
+                `Assalam-o-Alaikum ${customer},\n\n` +
+                `Ye HFC Restaurant se reminder hai.\n` +
+                `Aapka online payment abhi tak receive nahi hua hai.\n\n` +
+                `Amount: Rs. ${amount}\n` +
+                `Date: ${date}\n` +
+                `Rider: ${riderName}\n\n` +
+                `Kripya jald payment kar dein.\n` +
+                `Shukriya!`
+            );
+            window.open(`https://wa.me/?text=${message}`, '_blank');
         }
 
-        function sendWhatsAppStatement(customerEncoded, amount, date, riderEncoded, method) {
+        function sendWhatsAppStatement(customerEncoded, amount, date, riderNameEncoded, method) {
             const customer = decodeURIComponent(customerEncoded);
-            const rider = decodeURIComponent(riderEncoded);
-            
-            const reports = getReports();
-            let customerPayments = [];
-            let totalPending = 0;
-            
-            reports.forEach(r => {
-                if (r.onlinePayments) {
-                    r.onlinePayments.forEach(p => {
-                        if (p.customer.toLowerCase().includes(customer.toLowerCase()) || 
-                            customer.toLowerCase().includes(p.customer.toLowerCase())) {
-                            // Only count if NOT received
-                            if (p.receivedStatus !== 'received') {
-                                customerPayments.push({
-                                    date: r.displayDate,
-                                    amount: p.amount,
-                                    method: p.method,
-                                    status: r.status
-                                });
-                                totalPending += p.amount;
-                            }
-                        }
-                    });
+            const riderName = decodeURIComponent(riderNameEncoded);
+            const message = encodeURIComponent(
+                `Assalam-o-Alaikum ${customer},\n\n` +
+                `HFC Restaurant - Payment Statement\n` +
+                `---------------------------\n` +
+                `Customer: ${customer}\n` +
+                `Amount: Rs. ${amount}\n` +
+                `Method: ${method}\n` +
+                `Date: ${date}\n` +
+                `Rider: ${riderName}\n` +
+                `Status: Pending\n` +
+                `---------------------------\n\n` +
+                `Agar payment ho chuki hai toh receipt bhejein.\n` +
+                `Shukriya!`
+            );
+            window.open(`https://wa.me/?text=${message}`, '_blank');
+        }
+
+        // ==================== UTILITIES ====================
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal-overlay');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
                 }
             });
-            
-            let paymentList = customerPayments.map((p, i) => 
-                `${i+1}. ${p.date} — Rs. ${p.amount} (${p.method})`
-            ).join('\n');
-            
-            const message = `Assalam o Alaikum *${customer}*! 🙏
+        };
 
-*HFC Restaurant* — Aapka mukammal hisaab:
-
-${paymentList}
-
-━━━━━━━━━━━━━━
-💰 *Kul Baqi Raqam: Rs. ${totalPending}*
-━━━━━━━━━━━━━━
-
-Barah-e-karam jald payment clear kar dein.
-Shukria! 🍔
-
-— *HFC Restaurant*`;
-            
-            const encodedMsg = encodeURIComponent(message);
-            const url = `https://wa.me/?text=${encodedMsg}`;
-            window.open(url, '_blank');
-        }
-
-        // Close modals on outside click
-        window.onclick = function(event) {
-            const passModal = document.getElementById('passwordModal');
-            const repModal = document.getElementById('reportModal');
-            if (event.target === passModal) passModal.style.display = 'none';
-            if (event.target === repModal) repModal.style.display = 'none';
-        }
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default role
+            selectRole('rider');
+        });
     </script>
 </body>
 </html>
