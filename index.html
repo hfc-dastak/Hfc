@@ -1,3 +1,5 @@
+html
+
 <!DOCTYPE html>
 <html lang="ur">
 <head>
@@ -10,335 +12,143 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { -webkit-text-size-adjust: 100%; touch-action: manipulation; }
-
-        .readonly-field {
-            background: #f0fff4 !important;
-            border-color: #2ecc71 !important;
-            color: #155724 !important;
-            font-weight: 600;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            min-height: 100vh;
-            color: #333;
-        }
+        .readonly-field { background: #f0fff4 !important; border-color: #2ecc71 !important; color: #155724 !important; font-weight: 600; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; color: #333; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-
-        /* Login */
-        .login-box {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 400px;
-            margin: 80px auto;
-            text-align: center;
-        }
+        .login-box { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-width: 400px; margin: 80px auto; text-align: center; }
         .login-box h1 { color: #e94560; margin-bottom: 10px; font-size: 32px; }
         .login-box .subtitle { color: #666; margin-bottom: 30px; font-size: 14px; }
         .form-group { margin-bottom: 20px; text-align: left; }
         .form-group label { display: block; margin-bottom: 8px; color: #555; font-weight: 600; font-size: 14px; }
-        .form-group input, .form-group select {
-            width: 100%; padding: 12px 15px;
-            border: 2px solid #e0e0e0; border-radius: 10px;
-            font-size: 16px; transition: all 0.3s;
-        }
+        .form-group input, .form-group select { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s; }
         .form-group input:focus { outline: none; border-color: #e94560; }
-
-        .btn {
-            width: 100%; padding: 14px;
-            background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
-            color: white; border: none; border-radius: 10px;
-            font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s;
-        }
+        .btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(233,69,96,0.4); }
         .btn-secondary { background: linear-gradient(135deg, #533483 0%, #7b2cbf 100%); }
         .btn-success { background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); }
         .btn-warning { background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); color: white; }
         .btn-danger { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); }
+        .btn-info { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); }
         .btn-small { padding: 8px 16px; font-size: 13px; width: auto; }
         .hidden { display: none !important; }
-
-        /* Loading overlay */
-        .loading-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(26,26,46,0.9); z-index: 9999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; color: white;
-        }
-        .loading-overlay .spinner {
-            width: 50px; height: 50px;
-            border: 4px solid rgba(233,69,96,0.3);
-            border-top-color: #e94560;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin-bottom: 15px;
-        }
+        .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(26,26,46,0.92); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; }
+        .loading-overlay .spinner { width: 50px; height: 50px; border: 4px solid rgba(233,69,96,0.3); border-top-color: #e94560; border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 15px; }
         @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* Dashboard */
-        .dashboard {
-            background: white; border-radius: 20px; padding: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2); margin-bottom: 20px;
-        }
-        .header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #f0f0f0;
-        }
+        .dashboard { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); margin-bottom: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #f0f0f0; }
         .header h2 { color: #1a1a2e; font-size: 24px; }
         .header .user-info { display: flex; align-items: center; gap: 15px; }
-        .logout-btn {
-            padding: 10px 20px; background: #e94560; color: white;
-            border: none; border-radius: 8px; cursor: pointer; font-weight: 600;
-        }
-
-        .stats-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px; margin-bottom: 25px;
-        }
-        .stat-card {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white; padding: 20px; border-radius: 15px; text-align: center;
-        }
+        .logout-btn { padding: 10px 20px; background: #e94560; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
+        .stat-card { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 20px; border-radius: 15px; text-align: center; }
         .stat-card h3 { font-size: 13px; opacity: 0.8; margin-bottom: 8px; text-transform: uppercase; }
         .stat-card .value { font-size: 28px; font-weight: bold; color: #e94560; }
-
-        .card {
-            background: #f8f9fa; border-radius: 15px; padding: 25px;
-            margin-bottom: 20px; border-left: 4px solid #e94560;
-        }
-        .card h3 {
-            color: #1a1a2e; margin-bottom: 20px; padding-bottom: 10px;
-            border-bottom: 2px solid #e94560; font-size: 18px;
-        }
-
-        /* Online Payment Row */
-        .online-payment-row {
-            display: grid; grid-template-columns: 1fr; gap: 15px;
-            padding: 20px; background: white; border-radius: 12px;
-            margin-bottom: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            border: 2px solid #ff9800;
-        }
-        .online-payment-row .row-header {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
-            gap: 12px; align-items: center;
-        }
-        .online-payment-row input, .online-payment-row select {
-            padding: 14px; border: 2px solid #ddd; border-radius: 10px;
-            width: 100%; font-size: 16px;
-        }
-        .online-payment-row input:focus, .online-payment-row select:focus {
-            outline: none; border-color: #e94560;
-        }
-        .online-payment-row .small-field { padding: 10px 14px; font-size: 14px; }
-
-        .remove-order {
-            background: #e94560; color: white; border: none;
-            padding: 14px; border-radius: 10px; cursor: pointer; font-size: 18px;
-        }
-        .warning-btn {
-            background: #ff9800 !important; color: white !important;
-            font-size: 13px !important; padding: 12px !important;
-            animation: pulse 2s infinite;
-        }
+        .card { background: #f8f9fa; border-radius: 15px; padding: 25px; margin-bottom: 20px; border-left: 4px solid #e94560; }
+        .card h3 { color: #1a1a2e; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e94560; font-size: 18px; }
+        .edit-mode-banner { background: linear-gradient(135deg, #f39c12, #e67e22); color: white; padding: 12px 20px; border-radius: 10px; margin-bottom: 20px; font-weight: 600; font-size: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .online-payment-row { display: grid; grid-template-columns: 1fr; gap: 15px; padding: 20px; background: white; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); border: 2px solid #ff9800; }
+        .online-payment-row .row-header { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 0.5fr; gap: 12px; align-items: center; }
+        .online-payment-row input, .online-payment-row select { padding: 14px; border: 2px solid #ddd; border-radius: 10px; width: 100%; font-size: 16px; }
+        .online-payment-row input:focus, .online-payment-row select:focus { outline: none; border-color: #e94560; }
+        .remove-order { background: #e94560; color: white; border: none; padding: 14px; border-radius: 10px; cursor: pointer; font-size: 18px; }
+        .warning-btn { background: #ff9800 !important; color: white !important; font-size: 13px !important; padding: 12px !important; animation: pulse 2s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
-
-        /* Image Upload */
-        .image-upload-area {
-            border: 2px dashed #ccc; border-radius: 12px; padding: 25px;
-            text-align: center; cursor: pointer; transition: all 0.3s; margin-top: 10px;
-        }
+        .image-upload-area { border: 2px dashed #ccc; border-radius: 12px; padding: 25px; text-align: center; cursor: pointer; transition: all 0.3s; margin-top: 10px; }
         .image-upload-area:hover { border-color: #e94560; background: #fff5f5; }
         .image-upload-area i { font-size: 32px; color: #999; margin-bottom: 10px; }
         .image-preview { max-width: 100%; max-height: 200px; border-radius: 10px; margin-top: 15px; }
-        .proof-badge {
-            display: inline-block; background: #4caf50; color: white;
-            padding: 6px 15px; border-radius: 20px; font-size: 13px;
-            margin-top: 10px; font-weight: 600;
-        }
-
-        /* Order Row */
-        .order-row {
-            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
-            gap: 12px; align-items: center; padding: 15px; background: white;
-            border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .order-row input, .order-row select {
-            padding: 12px; border: 2px solid #ddd; border-radius: 8px; width: 100%; font-size: 15px;
-        }
-
-        .add-btn {
-            background: #2ecc71; color: white; border: none;
-            padding: 14px 30px; border-radius: 10px; cursor: pointer;
-            font-weight: 600; margin-top: 10px; font-size: 15px;
-        }
-
-        /* Summary Box */
-        .summary-box {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white; padding: 25px; border-radius: 15px; margin-top: 20px;
-        }
+        .proof-badge { display: inline-block; background: #4caf50; color: white; padding: 6px 15px; border-radius: 20px; font-size: 13px; margin-top: 10px; font-weight: 600; }
+        .add-btn { background: #2ecc71; color: white; border: none; padding: 14px 30px; border-radius: 10px; cursor: pointer; font-weight: 600; margin-top: 10px; font-size: 15px; }
+        .summary-box { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 25px; border-radius: 15px; margin-top: 20px; }
         .summary-box h4 { margin-bottom: 15px; font-size: 20px; color: #e94560; }
-        .summary-item {
-            display: flex; justify-content: space-between;
-            padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 15px;
-        }
-        .summary-item.total {
-            font-size: 22px; font-weight: bold; border-bottom: none;
-            margin-top: 10px; padding-top: 15px;
-            border-top: 2px solid rgba(233,69,96,0.5); color: #e94560;
-        }
-
-        /* Tables */
+        .summary-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 15px; }
+        .summary-item.total { font-size: 22px; font-weight: bold; border-bottom: none; margin-top: 10px; padding-top: 15px; border-top: 2px solid rgba(233,69,96,0.5); color: #e94560; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
         th { background: #1a1a2e; color: white; font-weight: 600; }
         tr:hover { background: #f5f5f5; }
-
         .status { padding: 6px 15px; border-radius: 20px; font-size: 12px; font-weight: 600; }
         .status-pending { background: #fff3cd; color: #856404; }
         .status-approved { background: #d4edda; color: #155724; }
         .status-rejected { background: #f8d7da; color: #721c24; }
         .status-received { background: #d1fae5; color: #065f46; }
-
         .action-btns { display: flex; gap: 5px; flex-wrap: wrap; }
         .action-btns button { padding: 6px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; color: white; }
-
-        /* Modal */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%; background: rgba(0,0,0,0.6);
-            justify-content: center; align-items: center; z-index: 1000; padding: 20px;
-        }
-        .modal-content {
-            background: white; padding: 30px; border-radius: 20px;
-            width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto;
-        }
-        .modal-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #f0f0f0;
-        }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
+        .modal-content { background: white; padding: 30px; border-radius: 20px; width: 100%; max-width: 750px; max-height: 92vh; overflow-y: auto; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #f0f0f0; }
         .close-modal { font-size: 28px; cursor: pointer; color: #999; background: none; border: none; }
-
-        /* Tabs */
-        .tabs {
-            display: flex; gap: 10px; margin-bottom: 20px;
-            border-bottom: 2px solid #eee; padding-bottom: 10px;
-            overflow-x: auto; -webkit-overflow-scrolling: touch;
-        }
-        .tab {
-            padding: 10px 20px; cursor: pointer; border-radius: 8px;
-            font-weight: 600; color: #666; background: none; border: none;
-            font-size: 14px; white-space: nowrap; flex-shrink: 0;
-        }
+        .admin-edit-field { width: 100%; padding: 10px 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 14px; margin-top: 4px; }
+        .admin-edit-field:focus { outline: none; border-color: #e94560; }
+        .admin-edit-label { font-size: 12px; color: #666; font-weight: 600; margin-top: 10px; display: block; }
+        .payment-edit-box { background: #fff8e1; border: 1px solid #ffcc02; border-radius: 10px; padding: 15px; margin-bottom: 12px; }
+        .payment-edit-box h5 { color: #e94560; margin-bottom: 10px; font-size: 14px; }
+        .payment-edit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .tab { padding: 10px 20px; cursor: pointer; border-radius: 8px; font-weight: 600; color: #666; background: none; border: none; font-size: 14px; white-space: nowrap; flex-shrink: 0; }
         .tab.active { background: #e94560; color: white; }
-
-        /* Rider Card */
-        .rider-card {
-            background: white; padding: 20px; border-radius: 15px;
-            margin-bottom: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            display: flex; justify-content: space-between; align-items: center;
-        }
+        .rider-card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; }
         .rider-info h4 { color: #1a1a2e; margin-bottom: 5px; }
         .rider-info p { color: #666; font-size: 14px; }
-
         .alert { padding: 15px; border-radius: 10px; margin-bottom: 20px; font-weight: 600; }
         .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
         .alert-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-
         .whatsapp-btn { background: #25d366 !important; color: white !important; }
-        .whatsapp-btn:hover { background: #128c7e !important; }
         .received-btn { background: #10b981 !important; color: white !important; }
-
-        .hfc-logo {
-            font-size: 48px; font-weight: 900; color: #e94560;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1); margin-bottom: 5px;
-        }
-
-        /* ===== MOBILE RESPONSIVE ===== */
+        .hfc-logo { font-size: 48px; font-weight: 900; color: #e94560; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); margin-bottom: 5px; }
+        .edit-report-btn { background: #f39c12; color: white; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; }
         @media (max-width: 768px) {
-            .container { padding: 10px; }
-            .dashboard { padding: 15px; border-radius: 12px; }
+            .container { padding: 10px; } .dashboard { padding: 15px; border-radius: 12px; }
             .header { flex-direction: column; gap: 10px; text-align: center; padding-bottom: 15px; margin-bottom: 15px; }
-            .header h2 { font-size: 18px; }
-            .header .user-info { justify-content: center; flex-wrap: wrap; }
+            .header h2 { font-size: 18px; } .header .user-info { justify-content: center; flex-wrap: wrap; }
             .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px; }
-            .stat-card { padding: 12px 8px; border-radius: 10px; }
-            .stat-card h3 { font-size: 10px; }
-            .stat-card .value { font-size: 18px; }
-            .card { padding: 15px; border-radius: 10px; margin-bottom: 12px; }
-            .card h3 { font-size: 15px; margin-bottom: 12px; }
-            .tab { padding: 8px 14px; font-size: 12px; }
+            .stat-card { padding: 12px 8px; } .stat-card h3 { font-size: 10px; } .stat-card .value { font-size: 18px; }
+            .card { padding: 15px; margin-bottom: 12px; } .card h3 { font-size: 15px; margin-bottom: 12px; }
+            .tabs { overflow-x: auto; flex-wrap: nowrap; gap: 6px; } .tab { padding: 8px 14px; font-size: 12px; }
             .online-payment-row { padding: 12px; gap: 8px; }
             .online-payment-row .row-header { grid-template-columns: 1fr 1fr; gap: 8px; }
             .online-payment-row input, .online-payment-row select { padding: 10px; font-size: 14px; }
             .online-payment-row .row-header input:first-child { grid-column: 1 / -1; }
             .online-name, .online-address { grid-column: 1 / -1; }
             .warning-btn { grid-column: 1 / -1 !important; width: 100% !important; }
-            .order-row { grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; }
-            .order-row input:first-child { grid-column: 1 / -1; }
-            .order-row .remove-order { grid-column: 1 / -1; }
-            .summary-box { padding: 15px; }
-            .summary-box h4 { font-size: 16px; }
-            .summary-item { font-size: 13px; padding: 8px 0; }
-            .summary-item.total { font-size: 17px; }
-            .btn { padding: 12px; font-size: 14px; }
-            .btn-small { padding: 7px 12px; font-size: 12px; }
+            .btn { padding: 12px; font-size: 14px; } .btn-small { padding: 7px 12px; font-size: 12px; }
             .add-btn { padding: 12px 20px; font-size: 14px; width: 100%; }
             .rider-card { flex-direction: column; gap: 10px; text-align: center; padding: 15px; }
             .action-btns { justify-content: center; }
-            table { font-size: 12px; }
-            th, td { padding: 8px 6px; }
-            .login-box { margin: 20px auto; padding: 25px 20px; border-radius: 15px; }
-            .hfc-logo { font-size: 36px; }
-            .login-box h1 { font-size: 24px; }
-            .modal-content { padding: 20px; border-radius: 15px; }
-            .image-upload-area { padding: 15px; }
-            .image-upload-area i { font-size: 24px; }
-            /* Admin grids stack */
-            .admin-rider-form { grid-template-columns: 1fr !important; }
-            .admin-cust-form { grid-template-columns: 1fr !important; }
-            .report-grid { grid-template-columns: 1fr 1fr !important; }
+            table { font-size: 12px; } th, td { padding: 8px 6px; }
+            .login-box { margin: 20px auto; padding: 25px 20px; } .hfc-logo { font-size: 36px; } .login-box h1 { font-size: 24px; }
+            .modal-content { padding: 20px; } .image-upload-area { padding: 15px; }
+            .payment-edit-grid { grid-template-columns: 1fr !important; }
+            .admin-rider-form, .admin-cust-form { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 380px) {
             .stats-grid { grid-template-columns: 1fr; }
             .online-payment-row .row-header { grid-template-columns: 1fr; }
-            .order-row { grid-template-columns: 1fr; }
-            .stat-card .value { font-size: 20px; }
             .tab { padding: 7px 10px; font-size: 11px; }
         }
     </style>
 </head>
 <body>
 
-<!-- Loading Overlay -->
 <div id="loadingOverlay" class="loading-overlay">
     <div class="spinner"></div>
     <p>HFC System Load Ho Raha Hai...</p>
 </div>
 
-<!-- Login Section -->
+<!-- Login -->
 <div id="loginSection" class="hidden">
     <div class="container">
         <div class="login-box">
             <div class="hfc-logo">HFC</div>
             <h1>Rider Portal</h1>
             <p class="subtitle">HFC Restaurant Delivery Management</p>
-            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                <button class="btn btn-small" style="flex: 1;" onclick="selectRole('rider')" id="roleRider">🚴 Rider</button>
-                <button class="btn btn-secondary btn-small" style="flex: 1;" onclick="selectRole('admin')" id="roleAdmin">⚙️ Admin</button>
+            <div style="display:flex;gap:10px;margin-bottom:20px;">
+                <button class="btn btn-small" style="flex:1;" onclick="selectRole('rider')" id="roleRider">🚴 Rider</button>
+                <button class="btn btn-secondary btn-small" style="flex:1;" onclick="selectRole('admin')" id="roleAdmin">⚙️ Admin</button>
             </div>
             <div id="loginAlert"></div>
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" id="loginUsername" placeholder="Username enter karein" autocomplete="username">
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="loginPassword" placeholder="Password enter karein" autocomplete="current-password">
-            </div>
+            <div class="form-group"><label>Username</label><input type="text" id="loginUsername" placeholder="Username" autocomplete="username"></div>
+            <div class="form-group"><label>Password</label><input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password"></div>
             <button class="btn" onclick="login()">🔐 Login</button>
         </div>
     </div>
@@ -351,85 +161,52 @@
             <div class="header">
                 <div>
                     <h2>👋 Welcome, <span id="riderName"></span></h2>
-                    <p style="color: #666; margin-top: 5px; font-size: 14px;">Date: <span id="currentDate"></span></p>
+                    <p style="color:#666;margin-top:5px;font-size:14px;">Date: <span id="currentDate"></span></p>
                 </div>
                 <div class="user-info">
                     <button class="btn btn-secondary btn-small" onclick="openPasswordModal()">🔑 Password</button>
                     <button class="logout-btn" onclick="logout()">Logout</button>
                 </div>
             </div>
-
             <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>Opening Balance</h3>
-                    <div class="value" id="statOpening">Rs. 0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Online Payments</h3>
-                    <div class="value" id="statOnline">Rs. 0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Closing Balance</h3>
-                    <div class="value" id="statClosing">Rs. 0</div>
-                </div>
+                <div class="stat-card"><h3>Opening Balance</h3><div class="value" id="statOpening">Rs. 0</div></div>
+                <div class="stat-card"><h3>Online Payments</h3><div class="value" id="statOnline">Rs. 0</div></div>
+                <div class="stat-card"><h3>Closing Balance</h3><div class="value" id="statClosing">Rs. 0</div></div>
+            </div>
+
+            <div id="editModeBanner" class="edit-mode-banner hidden">
+                <span>✏️ Edit Mode — Report update kar rahe hain</span>
+                <button onclick="cancelEditMode()" style="background:rgba(255,255,255,0.3);border:none;color:white;padding:6px 14px;border-radius:6px;cursor:pointer;font-weight:600;">✕ Cancel</button>
             </div>
 
             <form id="riderForm" onsubmit="submitReport(event)">
                 <div class="card">
                     <h3>💰 Opening Balance & Expenses</h3>
-                    <div class="form-group">
-                        <label>Opening Balance (Rs.)</label>
-                        <input type="number" id="openingBalance" required placeholder="e.g. 2000" oninput="calculateSummary()">
-                    </div>
-                    <div class="form-group">
-                        <label>Fuel / Petrol (Rs.)</label>
-                        <input type="number" id="fuelAmount" placeholder="e.g. 500" oninput="calculateSummary()">
-                    </div>
-                    <div class="form-group">
-                        <label>Other Expenses (Rs.)</label>
-                        <input type="number" id="otherExpenses" placeholder="e.g. 100" oninput="calculateSummary()">
-                    </div>
-                    <div class="form-group">
-                        <label>Notes</label>
-                        <input type="text" id="riderNotes" placeholder="Koi bhi notes...">
-                    </div>
+                    <div class="form-group"><label>Opening Balance (Rs.)</label><input type="number" id="openingBalance" required placeholder="e.g. 2000" oninput="calculateSummary()"></div>
+                    <div class="form-group"><label>Fuel / Petrol (Rs.)</label><input type="number" id="fuelAmount" placeholder="e.g. 500" oninput="calculateSummary()"></div>
+                    <div class="form-group"><label>Other Expenses (Rs.)</label><input type="number" id="otherExpenses" placeholder="e.g. 100" oninput="calculateSummary()"></div>
+                    <div class="form-group"><label>Notes</label><input type="text" id="riderNotes" placeholder="Koi bhi notes..."></div>
                 </div>
-
                 <div class="card">
                     <h3>💳 Online Payments</h3>
-                    <p style="color: #ff9800; font-size: 14px; margin-bottom: 15px; font-weight: 600;">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        Warning: "Clear" dabaane se sara data chala jayega!
-                    </p>
+                    <p style="color:#ff9800;font-size:14px;margin-bottom:15px;font-weight:600;"><i class="fas fa-exclamation-triangle"></i> Warning: "Clear" dabaane se sara data chala jayega!</p>
                     <div id="onlinePaymentsContainer"></div>
                     <button type="button" class="add-btn" onclick="addOnlinePayment()">+ Online Payment Add Karein</button>
                 </div>
-
                 <div class="summary-box">
                     <h4>📊 Daily Summary</h4>
-                    <div class="summary-item">
-                        <span>Opening Balance:</span><span id="sumOpening">Rs. 0</span>
-                    </div>
-                    <div class="summary-item" style="color: #ff6b6b;">
-                        <span>- Online Payments:</span><span id="sumOnline">Rs. 0</span>
-                    </div>
-                    <div class="summary-item" style="color: #ff6b6b;">
-                        <span>- Fuel / Petrol:</span><span id="sumFuel">Rs. 0</span>
-                    </div>
-                    <div class="summary-item" style="color: #ff6b6b;">
-                        <span>- Other Expenses:</span><span id="sumOther">Rs. 0</span>
-                    </div>
-                    <div class="summary-item total">
-                        <span>Closing Balance:</span><span id="sumClosing">Rs. 0</span>
-                    </div>
+                    <div class="summary-item"><span>Opening Balance:</span><span id="sumOpening">Rs. 0</span></div>
+                    <div class="summary-item" style="color:#ff6b6b;"><span>- Online Payments:</span><span id="sumOnline">Rs. 0</span></div>
+                    <div class="summary-item" style="color:#ff6b6b;"><span>- Fuel / Petrol:</span><span id="sumFuel">Rs. 0</span></div>
+                    <div class="summary-item" style="color:#ff6b6b;"><span>- Other Expenses:</span><span id="sumOther">Rs. 0</span></div>
+                    <div class="summary-item total"><span>Closing Balance:</span><span id="sumClosing">Rs. 0</span></div>
                 </div>
-
-                <div style="margin-top: 20px;">
-                    <button type="submit" class="btn">📤 Submit Report</button>
+                <div style="margin-top:20px;">
+                    <button type="submit" class="btn" id="submitBtn">📤 Submit Report</button>
                 </div>
             </form>
 
-            <div class="card" style="margin-top: 30px;">
+            <div class="card" style="margin-top:30px;">
                 <h3>📋 Meri Reports</h3>
                 <div id="mySubmissions"></div>
             </div>
@@ -442,59 +219,37 @@
     <div class="container">
         <div class="dashboard">
             <div class="header">
-                <div>
-                    <div class="hfc-logo" style="font-size: 32px;">HFC</div>
-                    <h2>Admin Panel</h2>
-                    <p style="color: #666; font-size: 14px;">Restaurant Rider Management</p>
-                </div>
+                <div><div class="hfc-logo" style="font-size:32px;">HFC</div><h2>Admin Panel</h2><p style="color:#666;font-size:14px;">Restaurant Rider Management</p></div>
                 <button class="logout-btn" onclick="logout()">Logout</button>
             </div>
-
             <div class="tabs">
-                <button class="tab active" onclick="switchTab('riders', event)">👥 Riders</button>
-                <button class="tab" onclick="switchTab('reports', event)">📋 Reports</button>
-                <button class="tab" onclick="switchTab('online', event)">💳 Online Payments</button>
-                <button class="tab" onclick="switchTab('customers', event)">👤 Customers</button>
+                <button class="tab active" onclick="switchTab('riders',event)">👥 Riders</button>
+                <button class="tab" onclick="switchTab('reports',event)">📋 Reports</button>
+                <button class="tab" onclick="switchTab('online',event)">💳 Online Payments</button>
+                <button class="tab" onclick="switchTab('customers',event)">👤 Customers</button>
             </div>
 
-            <!-- Riders Tab -->
             <div id="ridersTab" class="tab-content">
                 <div class="card">
                     <h3>Naya Rider Add Karein</h3>
-                    <div class="admin-rider-form" style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 15px; align-items: end;">
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Rider Name</label>
-                            <input type="text" id="newRiderName" placeholder="Rider ka naam">
-                        </div>
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Username</label>
-                            <input type="text" id="newRiderUser" placeholder="Username">
-                        </div>
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Password</label>
-                            <input type="password" id="newRiderPass" placeholder="Password">
-                        </div>
-                        <button class="btn btn-success btn-small" onclick="addRider()" style="padding: 12px 20px;">Add Rider</button>
+                    <div class="admin-rider-form" style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:15px;align-items:end;">
+                        <div class="form-group" style="margin-bottom:0;"><label>Rider Name</label><input type="text" id="newRiderName" placeholder="Rider ka naam"></div>
+                        <div class="form-group" style="margin-bottom:0;"><label>Username</label><input type="text" id="newRiderUser" placeholder="Username"></div>
+                        <div class="form-group" style="margin-bottom:0;"><label>Password</label><input type="password" id="newRiderPass" placeholder="Password"></div>
+                        <button class="btn btn-success btn-small" onclick="addRider()" style="padding:12px 20px;">Add Rider</button>
                     </div>
                 </div>
-                <div class="card">
-                    <h3>All Riders</h3>
-                    <div id="ridersList"></div>
-                </div>
+                <div class="card"><h3>All Riders</h3><div id="ridersList"></div></div>
             </div>
 
-            <!-- Reports Tab -->
             <div id="reportsTab" class="tab-content hidden">
                 <div class="card">
                     <h3>Filter Reports</h3>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <select id="filterStatus" onchange="renderAdminReports()" style="padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
-                            <option value="all">All Status</option>
-                            <option value="pending">Pending</option>
-                            <option value="approved">Approved</option>
-                            <option value="rejected">Rejected</option>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                        <select id="filterStatus" onchange="renderAdminReports()" style="padding:10px;border-radius:8px;border:1px solid #ddd;">
+                            <option value="all">All Status</option><option value="pending">Pending</option><option value="approved">Approved</option><option value="rejected">Rejected</option>
                         </select>
-                        <select id="filterRider" onchange="renderAdminReports()" style="padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+                        <select id="filterRider" onchange="renderAdminReports()" style="padding:10px;border-radius:8px;border:1px solid #ddd;">
                             <option value="all">All Riders</option>
                         </select>
                     </div>
@@ -502,45 +257,26 @@
                 <div id="allReports"></div>
             </div>
 
-            <!-- Online Payments Tab -->
             <div id="onlineTab" class="tab-content hidden">
-                <div class="card">
-                    <h3>💳 Online Payments Management</h3>
-                    <p style="color: #666; font-size: 14px;">WhatsApp reminder bhejein ya payment received mark karein</p>
-                </div>
+                <div class="card"><h3>💳 Online Payments Management</h3><p style="color:#666;font-size:14px;">WhatsApp reminder bhejein ya payment received mark karein</p></div>
                 <div id="onlinePaymentsList"></div>
             </div>
 
-            <!-- Customers Tab -->
             <div id="customersTab" class="tab-content hidden">
                 <div class="card">
                     <h3>👤 Customer Database</h3>
-                    <div class="admin-cust-form" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: 12px; align-items: end;">
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Customer ID</label>
-                            <input type="text" id="newCustId" placeholder="e.g. R111" style="text-transform:uppercase;">
-                        </div>
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Naam</label>
-                            <input type="text" id="newCustName" placeholder="Customer ka naam">
-                        </div>
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Address</label>
-                            <input type="text" id="newCustAddr" placeholder="Ghar / dukaan ka pata">
-                        </div>
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Phone</label>
-                            <input type="text" id="newCustPhone" placeholder="03XXXXXXXXX">
-                        </div>
-                        <button class="btn btn-success btn-small" onclick="addCustomer()" style="padding: 12px 20px;">Add</button>
+                    <div class="admin-cust-form" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:12px;align-items:end;">
+                        <div class="form-group" style="margin-bottom:0;"><label>Customer ID</label><input type="text" id="newCustId" placeholder="e.g. R111" style="text-transform:uppercase;"></div>
+                        <div class="form-group" style="margin-bottom:0;"><label>Naam</label><input type="text" id="newCustName" placeholder="Naam"></div>
+                        <div class="form-group" style="margin-bottom:0;"><label>Address</label><input type="text" id="newCustAddr" placeholder="Pata"></div>
+                        <div class="form-group" style="margin-bottom:0;"><label>Phone</label><input type="text" id="newCustPhone" placeholder="03XXXXXXXXX"></div>
+                        <button class="btn btn-success btn-small" onclick="addCustomer()" style="padding:12px 20px;">Add</button>
                     </div>
-                    <div id="custAlert" style="margin-top: 10px;"></div>
+                    <div id="custAlert" style="margin-top:10px;"></div>
                 </div>
                 <div class="card">
                     <h3>All Customers</h3>
-                    <input type="text" id="custSearch" placeholder="🔍 Search by ID, naam ya phone..."
-                           oninput="renderCustomersList()"
-                           style="width:100%; padding:10px; border:2px solid #ddd; border-radius:8px; margin-bottom:15px; font-size:15px;">
+                    <input type="text" id="custSearch" placeholder="🔍 Search..." oninput="renderCustomersList()" style="width:100%;padding:10px;border:2px solid #ddd;border-radius:8px;margin-bottom:15px;font-size:15px;">
                     <div id="customersList"></div>
                 </div>
             </div>
@@ -548,48 +284,36 @@
     </div>
 </div>
 
-<!-- Password Change Modal -->
+<!-- Password Modal -->
 <div id="passwordModal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3>🔑 Password Change</h3>
-            <button class="close-modal" onclick="closePasswordModal()">&times;</button>
-        </div>
-        <div class="form-group">
-            <label>Current Password</label>
-            <input type="password" id="currentPassword">
-        </div>
-        <div class="form-group">
-            <label>New Password</label>
-            <input type="password" id="newPassword">
-        </div>
-        <div class="form-group">
-            <label>Confirm New Password</label>
-            <input type="password" id="confirmPassword">
-        </div>
+    <div class="modal-content" style="max-width:450px;">
+        <div class="modal-header"><h3>🔑 Password Change</h3><button class="close-modal" onclick="closePasswordModal()">&times;</button></div>
+        <div class="form-group"><label>Current Password</label><input type="password" id="currentPassword"></div>
+        <div class="form-group"><label>New Password</label><input type="password" id="newPassword"></div>
+        <div class="form-group"><label>Confirm New Password</label><input type="password" id="confirmPassword"></div>
         <button class="btn" onclick="changePassword()">Change Password</button>
     </div>
 </div>
 
-<!-- Report Details Modal -->
+<!-- View Report Modal -->
 <div id="reportModal" class="modal-overlay">
-    <div class="modal-content" style="max-width: 700px;">
-        <div class="modal-header">
-            <h3>📄 Report Details</h3>
-            <button class="close-modal" onclick="closeReportModal()">&times;</button>
-        </div>
+    <div class="modal-content" style="max-width:750px;">
+        <div class="modal-header"><h3>📄 Report Details</h3><button class="close-modal" onclick="closeReportModal()">&times;</button></div>
         <div id="reportModalContent"></div>
     </div>
 </div>
 
-<!-- Firebase SDK -->
+<!-- Admin Edit Modal -->
+<div id="adminEditModal" class="modal-overlay">
+    <div class="modal-content" style="max-width:750px;">
+        <div class="modal-header"><h3>✏️ Report Edit — Admin</h3><button class="close-modal" onclick="closeAdminEditModal()">&times;</button></div>
+        <div id="adminEditContent"></div>
+    </div>
+</div>
+
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import {
-        getFirestore, doc, getDoc, setDoc, collection,
-        getDocs, deleteDoc, updateDoc, query, orderBy
-    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
+    import { getFirestore, doc, setDoc, collection, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
     const firebaseConfig = {
         apiKey: "AIzaSyAFNhbderjk2_UQcF-V81V2fldVr0WWIMY",
         authDomain: "hfconlinepayment.firebaseapp.com",
@@ -598,151 +322,93 @@
         messagingSenderId: "178896371166",
         appId: "1:178896371166:web:9ccddad8f9ccd5e280f14f"
     };
-
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-
     window.db = db;
-    window.fsOps = { doc, getDoc, setDoc, collection, getDocs, deleteDoc, updateDoc, query, orderBy };
-    window.firebaseReady = true;
+    window.fsOps = { doc, setDoc, collection, getDocs, deleteDoc };
     document.dispatchEvent(new Event('firebaseReady'));
 </script>
 
 <script>
-// ==================== WAIT FOR FIREBASE ====================
 let currentUser = null;
 let currentRole = 'rider';
+let editingReportId = null;
 
+// ===== FIREBASE =====
+async function getRiders() {
+    const snap = await window.fsOps.getDocs(window.fsOps.collection(window.db,'riders'));
+    return snap.docs.map(d => d.data());
+}
+async function saveRider(r) { await window.fsOps.setDoc(window.fsOps.doc(window.db,'riders',String(r.id)),r); }
+async function deleteRiderFromDB(id) { await window.fsOps.deleteDoc(window.fsOps.doc(window.db,'riders',String(id))); }
+async function getReports() {
+    const snap = await window.fsOps.getDocs(window.fsOps.collection(window.db,'reports'));
+    return snap.docs.map(d => d.data());
+}
+async function saveReport(r) { await window.fsOps.setDoc(window.fsOps.doc(window.db,'reports',String(r.id)),r); }
+async function deleteReportFromDB(id) { await window.fsOps.deleteDoc(window.fsOps.doc(window.db,'reports',String(id))); }
+async function getCustomerDB() {
+    const snap = await window.fsOps.getDocs(window.fsOps.collection(window.db,'customers'));
+    const db = {}; snap.docs.forEach(d => { db[d.id] = d.data(); }); return db;
+}
+async function saveCustomerToDB(id,data) { await window.fsOps.setDoc(window.fsOps.doc(window.db,'customers',id),data); }
+async function deleteCustomerFromDB(id) { await window.fsOps.deleteDoc(window.fsOps.doc(window.db,'customers',id)); }
+
+// ===== INIT =====
 document.addEventListener('firebaseReady', async () => {
-    // Check session
     const session = localStorage.getItem('hfc_session');
     if (session) {
         try {
             const s = JSON.parse(session);
             const riders = await getRiders();
             const user = riders.find(r => r.id === s.id && r.role === s.role);
-            if (user) {
-                currentUser = user;
-                hideLoading();
-                if (user.role === 'admin') {
-                    document.getElementById('adminDashboard').classList.remove('hidden');
-                    loadAdminData();
-                } else {
-                    document.getElementById('riderDashboard').classList.remove('hidden');
-                    loadRiderData();
-                }
-                return;
-            }
-        } catch(e) {
-            localStorage.removeItem('hfc_session');
-        }
+            if (user) { currentUser = user; hideLoading(); loadDashboard(user); return; }
+        } catch(e) { localStorage.removeItem('hfc_session'); }
     }
     hideLoading();
     document.getElementById('loginSection').classList.remove('hidden');
     selectRole('rider');
 });
 
-function hideLoading() {
-    document.getElementById('loadingOverlay').style.display = 'none';
+function hideLoading() { document.getElementById('loadingOverlay').style.display = 'none'; }
+
+function loadDashboard(user) {
+    if (user.role === 'admin') { document.getElementById('adminDashboard').classList.remove('hidden'); loadAdminData(); }
+    else { document.getElementById('riderDashboard').classList.remove('hidden'); loadRiderData(); }
 }
 
-// ==================== FIREBASE FUNCTIONS ====================
-async function getRiders() {
-    const snap = await window.fsOps.getDocs(window.fsOps.collection(window.db, 'riders'));
-    return snap.docs.map(d => d.data());
-}
-
-async function saveRider(rider) {
-    await window.fsOps.setDoc(
-        window.fsOps.doc(window.db, 'riders', String(rider.id)), rider
-    );
-}
-
-async function deleteRiderFromDB(id) {
-    await window.fsOps.deleteDoc(window.fsOps.doc(window.db, 'riders', String(id)));
-}
-
-async function getReports() {
-    const snap = await window.fsOps.getDocs(window.fsOps.collection(window.db, 'reports'));
-    return snap.docs.map(d => d.data());
-}
-
-async function saveReport(report) {
-    await window.fsOps.setDoc(
-        window.fsOps.doc(window.db, 'reports', String(report.id)), report
-    );
-}
-
-async function deleteReportFromDB(id) {
-    await window.fsOps.deleteDoc(window.fsOps.doc(window.db, 'reports', String(id)));
-}
-
-async function getCustomerDB() {
-    const snap = await window.fsOps.getDocs(window.fsOps.collection(window.db, 'customers'));
-    const db = {};
-    snap.docs.forEach(d => { db[d.id] = d.data(); });
-    return db;
-}
-
-async function saveCustomerToDB(id, data) {
-    await window.fsOps.setDoc(window.fsOps.doc(window.db, 'customers', id), data);
-}
-
-async function deleteCustomerFromDB(id) {
-    await window.fsOps.deleteDoc(window.fsOps.doc(window.db, 'customers', id));
-}
-
-// ==================== LOGIN ====================
+// ===== LOGIN =====
 function selectRole(role) {
     currentRole = role;
-    document.getElementById('roleRider').className = role === 'rider' ? 'btn btn-small' : 'btn btn-secondary btn-small';
-    document.getElementById('roleAdmin').className = role === 'admin' ? 'btn btn-small' : 'btn btn-secondary btn-small';
+    document.getElementById('roleRider').className = role==='rider' ? 'btn btn-small' : 'btn btn-secondary btn-small';
+    document.getElementById('roleAdmin').className = role==='admin' ? 'btn btn-small' : 'btn btn-secondary btn-small';
 }
 
 async function login() {
     const username = document.getElementById('loginUsername').value.trim();
     const password = document.getElementById('loginPassword').value;
-
-    if (!username || !password) {
-        showAlert('loginAlert', 'Username aur password dono zaroori hain!', 'error');
-        return;
-    }
-
-    showAlert('loginAlert', '⏳ Login ho raha hai...', 'success');
-
+    if (!username || !password) { showAlert('loginAlert','Username aur password zaroori hain!','error'); return; }
+    showAlert('loginAlert','⏳ Login ho raha hai...','success');
     try {
         const riders = await getRiders();
-        const user = riders.find(r => r.username === username && r.password === password && r.role === currentRole);
-
+        const user = riders.find(r => r.username===username && r.password===password && r.role===currentRole);
         if (user) {
             currentUser = user;
-            localStorage.setItem('hfc_session', JSON.stringify({ id: user.id, role: user.role }));
+            localStorage.setItem('hfc_session', JSON.stringify({id:user.id, role:user.role}));
             document.getElementById('loginSection').classList.add('hidden');
-            if (user.role === 'admin') {
-                document.getElementById('adminDashboard').classList.remove('hidden');
-                loadAdminData();
-            } else {
-                document.getElementById('riderDashboard').classList.remove('hidden');
-                loadRiderData();
-            }
-        } else {
-            showAlert('loginAlert', '❌ Galat username ya password!', 'error');
-        }
-    } catch(e) {
-        showAlert('loginAlert', '❌ Connection error! Internet check karein.', 'error');
-    }
+            loadDashboard(user);
+        } else { showAlert('loginAlert','❌ Galat username ya password!','error'); }
+    } catch(e) { showAlert('loginAlert','❌ Connection error!','error'); }
 }
 
-function showAlert(elementId, message, type) {
-    const el = document.getElementById(elementId);
-    if (!el) return;
-    el.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
-    if (type !== 'success' || message.includes('⏳')) return;
-    setTimeout(() => el.innerHTML = '', 3000);
+function showAlert(id, msg, type) {
+    const el = document.getElementById(id); if (!el) return;
+    el.innerHTML = `<div class="alert alert-${type}">${msg}</div>`;
+    if (!msg.includes('⏳')) setTimeout(() => { if(el) el.innerHTML=''; }, 3000);
 }
 
 function logout() {
-    currentUser = null;
+    currentUser = null; editingReportId = null;
     localStorage.removeItem('hfc_session');
     document.getElementById('loginSection').classList.remove('hidden');
     document.getElementById('riderDashboard').classList.add('hidden');
@@ -752,164 +418,190 @@ function logout() {
     document.getElementById('loginAlert').innerHTML = '';
 }
 
-// ==================== RIDER FUNCTIONS ====================
+// ===== RIDER =====
 function loadRiderData() {
     document.getElementById('riderName').textContent = currentUser.name;
-    document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ur-PK', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-    });
+    document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ur-PK',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
     restoreFormData();
-    if (document.getElementById('onlinePaymentsContainer').children.length === 0) {
-        addOnlinePayment();
-    }
+    if (document.getElementById('onlinePaymentsContainer').children.length === 0) addOnlinePayment();
     calculateSummary();
     loadMySubmissions();
 }
 
-// Form save/restore
 function saveFormData() {
     if (!currentUser) return;
-    const data = {
-        openingBalance: document.getElementById('openingBalance')?.value || '',
-        fuelAmount: document.getElementById('fuelAmount')?.value || '',
-        otherExpenses: document.getElementById('otherExpenses')?.value || '',
-        riderNotes: document.getElementById('riderNotes')?.value || ''
-    };
-    localStorage.setItem('hfc_form_' + currentUser.id, JSON.stringify(data));
+    localStorage.setItem('hfc_form_'+currentUser.id, JSON.stringify({
+        openingBalance: document.getElementById('openingBalance')?.value||'',
+        fuelAmount: document.getElementById('fuelAmount')?.value||'',
+        otherExpenses: document.getElementById('otherExpenses')?.value||'',
+        riderNotes: document.getElementById('riderNotes')?.value||''
+    }));
 }
 
 function restoreFormData() {
-    const saved = localStorage.getItem('hfc_form_' + currentUser.id);
-    if (saved) {
-        const data = JSON.parse(saved);
-        if (data.openingBalance) document.getElementById('openingBalance').value = data.openingBalance;
-        if (data.fuelAmount) document.getElementById('fuelAmount').value = data.fuelAmount;
-        if (data.otherExpenses) document.getElementById('otherExpenses').value = data.otherExpenses;
-        if (data.riderNotes) document.getElementById('riderNotes').value = data.riderNotes;
-    }
+    const saved = localStorage.getItem('hfc_form_'+currentUser.id);
+    if (!saved) return;
+    const d = JSON.parse(saved);
+    if (d.openingBalance) document.getElementById('openingBalance').value = d.openingBalance;
+    if (d.fuelAmount) document.getElementById('fuelAmount').value = d.fuelAmount;
+    if (d.otherExpenses) document.getElementById('otherExpenses').value = d.otherExpenses;
+    if (d.riderNotes) document.getElementById('riderNotes').value = d.riderNotes;
 }
 
-function clearSavedFormData() {
-    if (currentUser) localStorage.removeItem('hfc_form_' + currentUser.id);
+function clearSavedFormData() { if (currentUser) localStorage.removeItem('hfc_form_'+currentUser.id); }
+
+document.addEventListener('input', () => { if (currentUser && currentUser.role==='rider') saveFormData(); });
+
+// ===== RIDER EDIT MODE =====
+async function startEditReport(reportId) {
+    try {
+        const reports = await getReports();
+        const report = reports.find(r => r.id === reportId);
+        if (!report) return;
+        if (report.status === 'approved') { alert('❌ Approved report edit nahi ho sakti!'); return; }
+
+        editingReportId = reportId;
+        document.getElementById('openingBalance').value = report.openingBalance || '';
+        document.getElementById('fuelAmount').value = report.fuelAmount || '';
+        document.getElementById('otherExpenses').value = report.otherExpenses || '';
+        document.getElementById('riderNotes').value = report.notes || '';
+
+        document.getElementById('onlinePaymentsContainer').innerHTML = '';
+        if (report.onlinePayments && report.onlinePayments.length > 0) {
+            report.onlinePayments.forEach(p => addOnlinePaymentWithData(p));
+        } else { addOnlinePayment(); }
+
+        document.getElementById('editModeBanner').classList.remove('hidden');
+        document.getElementById('submitBtn').textContent = '💾 Update Report';
+        document.getElementById('submitBtn').style.background = 'linear-gradient(135deg,#f39c12,#e67e22)';
+        calculateSummary();
+        document.getElementById('riderForm').scrollIntoView({behavior:'smooth'});
+    } catch(e) { alert('❌ Error loading report!'); }
 }
 
-document.addEventListener('input', function() {
-    if (currentUser && currentUser.role === 'rider') saveFormData();
-});
-
-// ==================== ONLINE PAYMENT ====================
-function addOnlinePayment() {
+function addOnlinePaymentWithData(data) {
     const container = document.getElementById('onlinePaymentsContainer');
     const payId = Date.now() + '' + Math.floor(Math.random()*1000);
-
     const payDiv = document.createElement('div');
     payDiv.className = 'online-payment-row';
     payDiv.id = `online-${payId}`;
-
     payDiv.innerHTML = `
         <div class="row-header">
-            <input type="text" placeholder="Customer ID (e.g. R111) *"
-                class="online-customer" required style="font-size: 16px;"
-                oninput="lookupCustomer(this, '${payId}')">
-            <input type="text" id="cname-${payId}" placeholder="Naam (auto)"
-                class="online-name readonly-field" readonly>
-            <input type="text" id="caddr-${payId}" placeholder="Address (auto)"
-                class="online-address readonly-field" readonly>
-            <input type="text" id="cphone-${payId}" placeholder="Phone (auto)"
-                class="online-phone readonly-field" readonly>
-            <input type="number" placeholder="Amount (Rs.) *" class="online-amount"
-                required oninput="calculateSummary()" style="font-size: 16px;">
-            <select class="online-method" style="font-size: 15px;">
-                <option value="Easypaisa">Easypaisa</option>
-                <option value="JazzCash">JazzCash</option>
-                <option value="Bank">Bank Transfer</option>
-                <option value="Other">Other</option>
+            <input type="text" placeholder="Customer ID *" class="online-customer" required style="font-size:16px;"
+                oninput="lookupCustomer(this,'${payId}')" value="${data.customer||''}">
+            <input type="text" id="cname-${payId}" placeholder="Naam (auto)" class="online-name readonly-field" readonly value="${data.customerName||''}">
+            <input type="text" id="caddr-${payId}" placeholder="Address (auto)" class="online-address readonly-field" readonly value="${data.customerAddress||''}">
+            <input type="text" id="cphone-${payId}" placeholder="Phone (auto)" class="online-phone readonly-field" readonly value="${data.customerPhone||''}">
+            <input type="number" placeholder="Amount (Rs.) *" class="online-amount" required oninput="calculateSummary()" style="font-size:16px;" value="${data.amount||''}">
+            <select class="online-method" style="font-size:15px;">
+                <option value="Easypaisa" ${data.method==='Easypaisa'?'selected':''}>Easypaisa</option>
+                <option value="JazzCash" ${data.method==='JazzCash'?'selected':''}>JazzCash</option>
+                <option value="Bank" ${data.method==='Bank'?'selected':''}>Bank Transfer</option>
+                <option value="Other" ${data.method==='Other'?'selected':''}>Other</option>
             </select>
             <button type="button" class="remove-order warning-btn" onclick="confirmRemoveOnline('${payId}')">
                 <i class="fas fa-times"></i> Clear
             </button>
         </div>
-        <div style="margin-top: 15px;">
+        <div style="margin-top:15px;">
             <div class="image-upload-area" onclick="document.getElementById('proof-${payId}').click()">
                 <i class="fas fa-camera"></i>
-                <p style="font-size: 15px; color: #666; margin-top: 8px; font-weight: 500;">📸 Delivery Proof Photo</p>
-                <p style="font-size: 13px; color: #999; margin-top: 5px;">Click karein ya yahan drop karein</p>
-                <input type="file" id="proof-${payId}" accept="image/*" style="display: none;"
-                    onchange="handleImageUpload(this, '${payId}')">
-                <img id="preview-${payId}" class="image-preview" style="display: none;">
-                <div id="badge-${payId}" class="proof-badge" style="display: none;">
-                    <i class="fas fa-check"></i> Photo Uploaded
-                </div>
+                <p style="font-size:15px;color:#666;margin-top:8px;font-weight:500;">📸 Delivery Proof Photo</p>
+                <input type="file" id="proof-${payId}" accept="image/*" style="display:none;" onchange="handleImageUpload(this,'${payId}')">
+                <img id="preview-${payId}" class="image-preview" style="${data.proofImage?'':'display:none;'}" src="${data.proofImage||''}">
+                <div id="badge-${payId}" class="proof-badge" style="${data.proofImage?'':'display:none;'}"><i class="fas fa-check"></i> Photo Uploaded</div>
             </div>
+        </div>`;
+    if (data.proofImage) payDiv.dataset.proofImage = data.proofImage;
+    if (data.receivedStatus) payDiv.dataset.receivedStatus = data.receivedStatus;
+    container.appendChild(payDiv);
+}
+
+function cancelEditMode() {
+    editingReportId = null;
+    document.getElementById('editModeBanner').classList.add('hidden');
+    document.getElementById('submitBtn').textContent = '📤 Submit Report';
+    document.getElementById('submitBtn').style.background = '';
+    document.getElementById('riderForm').reset();
+    document.getElementById('onlinePaymentsContainer').innerHTML = '';
+    addOnlinePayment();
+    calculateSummary();
+}
+
+// ===== ONLINE PAYMENT =====
+function addOnlinePayment() {
+    const container = document.getElementById('onlinePaymentsContainer');
+    const payId = Date.now() + '' + Math.floor(Math.random()*1000);
+    const payDiv = document.createElement('div');
+    payDiv.className = 'online-payment-row';
+    payDiv.id = `online-${payId}`;
+    payDiv.innerHTML = `
+        <div class="row-header">
+            <input type="text" placeholder="Customer ID (e.g. R111) *" class="online-customer" required style="font-size:16px;" oninput="lookupCustomer(this,'${payId}')">
+            <input type="text" id="cname-${payId}" placeholder="Naam (auto)" class="online-name readonly-field" readonly>
+            <input type="text" id="caddr-${payId}" placeholder="Address (auto)" class="online-address readonly-field" readonly>
+            <input type="text" id="cphone-${payId}" placeholder="Phone (auto)" class="online-phone readonly-field" readonly>
+            <input type="number" placeholder="Amount (Rs.) *" class="online-amount" required oninput="calculateSummary()" style="font-size:16px;">
+            <select class="online-method" style="font-size:15px;">
+                <option value="Easypaisa">Easypaisa</option><option value="JazzCash">JazzCash</option>
+                <option value="Bank">Bank Transfer</option><option value="Other">Other</option>
+            </select>
+            <button type="button" class="remove-order warning-btn" onclick="confirmRemoveOnline('${payId}')">
+                <i class="fas fa-times"></i> Clear
+            </button>
         </div>
-    `;
+        <div style="margin-top:15px;">
+            <div class="image-upload-area" onclick="document.getElementById('proof-${payId}').click()">
+                <i class="fas fa-camera"></i>
+                <p style="font-size:15px;color:#666;margin-top:8px;font-weight:500;">📸 Delivery Proof Photo</p>
+                <p style="font-size:13px;color:#999;margin-top:5px;">Click karein ya yahan drop karein</p>
+                <input type="file" id="proof-${payId}" accept="image/*" style="display:none;" onchange="handleImageUpload(this,'${payId}')">
+                <img id="preview-${payId}" class="image-preview" style="display:none;">
+                <div id="badge-${payId}" class="proof-badge" style="display:none;"><i class="fas fa-check"></i> Photo Uploaded</div>
+            </div>
+        </div>`;
     container.appendChild(payDiv);
 }
 
 function confirmRemoveOnline(id) {
-    if (confirm('⚠️ WARNING!\n\nSara data (naam, amount, photo) delete ho jayega!\n\nOK = Delete | Cancel = Rakhna hai')) {
-        removeOnlinePayment(id);
-    }
+    if (confirm('⚠️ Sara data delete ho jayega!\n\nOK = Delete | Cancel = Rakhna hai')) removeOnlinePayment(id);
 }
-
-function removeOnlinePayment(id) {
-    const el = document.getElementById(`online-${id}`);
-    if (el) el.remove();
-    calculateSummary();
-}
+function removeOnlinePayment(id) { const el = document.getElementById(`online-${id}`); if (el) el.remove(); calculateSummary(); }
 
 async function lookupCustomer(input, payId) {
     const id = input.value.trim().toUpperCase();
-    if (id.length < 2) {
-        document.getElementById(`cname-${payId}`).value = '';
-        document.getElementById(`caddr-${payId}`).value = '';
-        document.getElementById(`cphone-${payId}`).value = '';
-        return;
-    }
+    if (id.length < 2) { ['cname','caddr','cphone'].forEach(f => { document.getElementById(`${f}-${payId}`).value=''; }); return; }
     try {
         const db = await getCustomerDB();
-        const customer = db[id];
-        if (customer) {
-            document.getElementById(`cname-${payId}`).value = customer.name;
-            document.getElementById(`caddr-${payId}`).value = customer.address;
-            document.getElementById(`cphone-${payId}`).value = customer.phone;
-        } else {
-            document.getElementById(`cname-${payId}`).value = '';
-            document.getElementById(`caddr-${payId}`).value = '';
-            document.getElementById(`cphone-${payId}`).value = '';
-        }
+        const c = db[id];
+        document.getElementById(`cname-${payId}`).value = c ? c.name : '';
+        document.getElementById(`caddr-${payId}`).value = c ? c.address : '';
+        document.getElementById(`cphone-${payId}`).value = c ? c.phone : '';
     } catch(e) {}
 }
 
 function handleImageUpload(input, payId) {
     if (input.files && input.files[0]) {
         const reader = new FileReader();
-        reader.onload = function(e) {
-            const preview = document.getElementById(`preview-${payId}`);
-            const badge = document.getElementById(`badge-${payId}`);
-            preview.src = e.target.result;
-            preview.style.display = 'block';
-            badge.style.display = 'inline-block';
-            const container = document.getElementById(`online-${payId}`);
-            container.dataset.proofImage = e.target.result;
+        reader.onload = e => {
+            document.getElementById(`preview-${payId}`).src = e.target.result;
+            document.getElementById(`preview-${payId}`).style.display = 'block';
+            document.getElementById(`badge-${payId}`).style.display = 'inline-block';
+            document.getElementById(`online-${payId}`).dataset.proofImage = e.target.result;
         };
         reader.readAsDataURL(input.files[0]);
     }
 }
 
-// ==================== CALCULATION ====================
 function calculateSummary() {
-    const opening = parseFloat(document.getElementById('openingBalance')?.value) || 0;
-    const fuel = parseFloat(document.getElementById('fuelAmount')?.value) || 0;
-    const other = parseFloat(document.getElementById('otherExpenses')?.value) || 0;
-
+    const opening = parseFloat(document.getElementById('openingBalance')?.value)||0;
+    const fuel = parseFloat(document.getElementById('fuelAmount')?.value)||0;
+    const other = parseFloat(document.getElementById('otherExpenses')?.value)||0;
     let onlineTotal = 0;
     document.querySelectorAll('#onlinePaymentsContainer .online-payment-row').forEach(row => {
-        onlineTotal += parseFloat(row.querySelector('.online-amount')?.value) || 0;
+        onlineTotal += parseFloat(row.querySelector('.online-amount')?.value)||0;
     });
-
     const closing = opening - onlineTotal - fuel - other;
-
     document.getElementById('sumOpening').textContent = `Rs. ${opening.toFixed(2)}`;
     document.getElementById('sumOnline').textContent = `Rs. ${onlineTotal.toFixed(2)}`;
     document.getElementById('sumFuel').textContent = `Rs. ${fuel.toFixed(2)}`;
@@ -920,244 +612,191 @@ function calculateSummary() {
     document.getElementById('statClosing').textContent = `Rs. ${closing.toFixed(2)}`;
 }
 
-// ==================== SUBMIT REPORT ====================
+// ===== SUBMIT / UPDATE =====
 async function submitReport(e) {
     e.preventDefault();
-
     const onlineRows = document.querySelectorAll('#onlinePaymentsContainer .online-payment-row');
     let missingProof = false;
     onlineRows.forEach(row => { if (!row.dataset.proofImage) missingProof = true; });
-
     if (missingProof && onlineRows.length > 0) {
-        if (!confirm('⚠️ Kuch online payments ki proof photo nahi hai!\n\nPhir bhi submit karein?')) return;
+        if (!confirm('⚠️ Kuch payments ki proof photo nahi!\n\nPhir bhi submit karein?')) return;
     }
-
     const onlinePayments = [];
     onlineRows.forEach(row => {
         onlinePayments.push({
             customer: row.querySelector('.online-customer').value,
-            customerName: row.querySelector('.online-name')?.value || '',
-            customerAddress: row.querySelector('.online-address')?.value || '',
-            customerPhone: row.querySelector('.online-phone')?.value || '',
-            amount: parseFloat(row.querySelector('.online-amount').value) || 0,
+            customerName: row.querySelector('.online-name')?.value||'',
+            customerAddress: row.querySelector('.online-address')?.value||'',
+            customerPhone: row.querySelector('.online-phone')?.value||'',
+            amount: parseFloat(row.querySelector('.online-amount').value)||0,
             method: row.querySelector('.online-method').value,
-            proofImage: row.dataset.proofImage || null,
-            receivedStatus: 'pending'
+            proofImage: row.dataset.proofImage||null,
+            receivedStatus: row.dataset.receivedStatus||'pending'
         });
     });
-
-    const opening = parseFloat(document.getElementById('openingBalance').value) || 0;
-    const fuel = parseFloat(document.getElementById('fuelAmount').value) || 0;
-    const other = parseFloat(document.getElementById('otherExpenses').value) || 0;
-    const totalOnline = onlinePayments.reduce((s, o) => s + o.amount, 0);
+    const opening = parseFloat(document.getElementById('openingBalance').value)||0;
+    const fuel = parseFloat(document.getElementById('fuelAmount').value)||0;
+    const other = parseFloat(document.getElementById('otherExpenses').value)||0;
+    const totalOnline = onlinePayments.reduce((s,o) => s+o.amount, 0);
     const closing = opening - totalOnline - fuel - other;
-
-    const submission = {
-        id: Date.now(),
-        riderId: currentUser.id,
-        riderName: currentUser.name,
-        date: new Date().toISOString(),
-        displayDate: new Date().toLocaleDateString('ur-PK'),
-        openingBalance: opening,
-        fuelAmount: fuel,
-        otherExpenses: other,
-        notes: document.getElementById('riderNotes').value,
-        onlinePayments: onlinePayments,
-        status: 'pending',
-        totalOnlinePayments: totalOnline,
-        closingBalance: closing
-    };
-
     try {
-        await saveReport(submission);
-        clearSavedFormData();
-        alert('✅ Report successfully submit ho gaya!');
-        document.getElementById('riderForm').reset();
-        document.getElementById('onlinePaymentsContainer').innerHTML = '';
-        addOnlinePayment();
-        calculateSummary();
+        if (editingReportId) {
+            // UPDATE
+            const reports = await getReports();
+            const existing = reports.find(r => r.id === editingReportId);
+            if (!existing) { alert('❌ Report nahi mili!'); return; }
+            existing.openingBalance = opening; existing.fuelAmount = fuel; existing.otherExpenses = other;
+            existing.notes = document.getElementById('riderNotes').value;
+            existing.onlinePayments = onlinePayments; existing.totalOnlinePayments = totalOnline;
+            existing.closingBalance = closing; existing.status = 'pending';
+            existing.lastEditedAt = new Date().toISOString();
+            await saveReport(existing);
+            cancelEditMode();
+            alert('✅ Report update ho gaya! Admin dobara review karega.');
+        } else {
+            // NEW
+            const submission = {
+                id: Date.now(), riderId: currentUser.id, riderName: currentUser.name,
+                date: new Date().toISOString(), displayDate: new Date().toLocaleDateString('ur-PK'),
+                openingBalance: opening, fuelAmount: fuel, otherExpenses: other,
+                notes: document.getElementById('riderNotes').value,
+                onlinePayments, status: 'pending', totalOnlinePayments: totalOnline, closingBalance: closing
+            };
+            await saveReport(submission);
+            clearSavedFormData();
+            document.getElementById('riderForm').reset();
+            document.getElementById('onlinePaymentsContainer').innerHTML = '';
+            addOnlinePayment(); calculateSummary();
+            alert('✅ Report submit ho gaya!');
+        }
         loadMySubmissions();
-    } catch(e) {
-        alert('❌ Submit nahi hua! Internet check karein.');
-    }
+    } catch(e) { alert('❌ Submit nahi hua! Internet check karein.'); }
 }
 
 async function loadMySubmissions() {
     const container = document.getElementById('mySubmissions');
-    container.innerHTML = '<p style="color:#666; text-align:center;">Load ho raha hai...</p>';
+    container.innerHTML = '<p style="color:#666;text-align:center;">Load ho raha hai...</p>';
     try {
         const reports = (await getReports()).filter(s => s.riderId === currentUser.id);
-        if (reports.length === 0) {
-            container.innerHTML = '<p style="color:#666; text-align:center; padding:20px;">Abhi tak koi report nahi hai.</p>';
-            return;
-        }
-        let html = '<table><thead><tr><th>Date</th><th>Online</th><th>Closing</th><th>Status</th></tr></thead><tbody>';
-        reports.reverse().forEach(sub => {
-            const sc = sub.status === 'approved' ? 'status-approved' : sub.status === 'pending' ? 'status-pending' : 'status-rejected';
+        if (reports.length === 0) { container.innerHTML = '<p style="color:#666;text-align:center;padding:20px;">Abhi tak koi report nahi.</p>'; return; }
+        let html = `<table><thead><tr><th>Date</th><th>Online</th><th>Closing</th><th>Status</th><th>Action</th></tr></thead><tbody>`;
+        reports.slice().reverse().forEach(sub => {
+            const sc = sub.status==='approved' ? 'status-approved' : sub.status==='pending' ? 'status-pending' : 'status-rejected';
+            const canEdit = sub.status !== 'approved';
             html += `<tr>
                 <td>${sub.displayDate}</td>
                 <td>Rs. ${sub.totalOnlinePayments}</td>
                 <td>Rs. ${(sub.closingBalance||0).toFixed(2)}</td>
                 <td><span class="status ${sc}">${sub.status.toUpperCase()}</span></td>
+                <td>${canEdit ? `<button class="edit-report-btn" onclick="startEditReport(${sub.id})">✏️ Edit</button>` : '<span style="color:#999;font-size:12px;">Locked</span>'}</td>
             </tr>`;
         });
         html += '</tbody></table>';
         container.innerHTML = html;
-    } catch(e) {
-        container.innerHTML = '<p style="color:red;">Load nahi hua. Internet check karein.</p>';
-    }
+    } catch(e) { container.innerHTML = '<p style="color:red;">Load nahi hua.</p>'; }
 }
 
-// ==================== PASSWORD CHANGE ====================
+// ===== PASSWORD =====
 function openPasswordModal() { document.getElementById('passwordModal').style.display = 'flex'; }
 function closePasswordModal() { document.getElementById('passwordModal').style.display = 'none'; }
-
 async function changePassword() {
     const current = document.getElementById('currentPassword').value;
     const newPass = document.getElementById('newPassword').value;
-    const confirm = document.getElementById('confirmPassword').value;
-    if (current !== currentUser.password) { alert('❌ Current password galat hai!'); return; }
-    if (newPass !== confirm) { alert('❌ New password match nahi!'); return; }
-    if (newPass.length < 4) { alert('❌ Password 4 characters se zyada hona chahiye!'); return; }
+    const conf = document.getElementById('confirmPassword').value;
+    if (current !== currentUser.password) { alert('❌ Current password galat!'); return; }
+    if (newPass !== conf) { alert('❌ New password match nahi!'); return; }
+    if (newPass.length < 4) { alert('❌ Password 4+ characters ka hona chahiye!'); return; }
     try {
-        currentUser.password = newPass;
-        await saveRider(currentUser);
-        localStorage.setItem('hfc_session', JSON.stringify({ id: currentUser.id, role: currentUser.role }));
-        alert('✅ Password change ho gaya!');
-        closePasswordModal();
-        document.getElementById('currentPassword').value = '';
-        document.getElementById('newPassword').value = '';
-        document.getElementById('confirmPassword').value = '';
-    } catch(e) {
-        alert('❌ Error! Try again.');
-    }
+        currentUser.password = newPass; await saveRider(currentUser);
+        alert('✅ Password change ho gaya!'); closePasswordModal();
+        ['currentPassword','newPassword','confirmPassword'].forEach(id => { document.getElementById(id).value=''; });
+    } catch(e) { alert('❌ Error!'); }
 }
 
-// ==================== ADMIN FUNCTIONS ====================
-async function loadAdminData() {
-    loadRidersList();
-    renderAdminReports();
-    renderOnlinePayments();
-    populateRiderFilter();
-    renderCustomersList();
-}
+// ===== ADMIN =====
+async function loadAdminData() { loadRidersList(); renderAdminReports(); renderOnlinePayments(); populateRiderFilter(); renderCustomersList(); }
 
 function switchTab(tab, event) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
     if (event && event.target) event.target.classList.add('active');
-    document.getElementById(tab + 'Tab').classList.remove('hidden');
-    if (tab === 'reports') renderAdminReports();
-    if (tab === 'online') renderOnlinePayments();
-    if (tab === 'customers') renderCustomersList();
+    document.getElementById(tab+'Tab').classList.remove('hidden');
+    if (tab==='reports') renderAdminReports();
+    if (tab==='online') renderOnlinePayments();
+    if (tab==='customers') renderCustomersList();
 }
 
 async function addRider() {
     const name = document.getElementById('newRiderName').value.trim();
     const username = document.getElementById('newRiderUser').value.trim();
     const password = document.getElementById('newRiderPass').value;
-    if (!name || !username || !password) { alert('❌ Sari fields fill karein!'); return; }
+    if (!name||!username||!password) { alert('❌ Sari fields fill karein!'); return; }
     try {
         const riders = await getRiders();
-        if (riders.find(r => r.username === username)) { alert('❌ Username pehle se exist karta hai!'); return; }
-        const newRider = { id: Date.now(), name, username, password, role: 'rider' };
-        await saveRider(newRider);
-        document.getElementById('newRiderName').value = '';
-        document.getElementById('newRiderUser').value = '';
-        document.getElementById('newRiderPass').value = '';
-        loadRidersList();
-        populateRiderFilter();
-        alert('✅ Rider add ho gaya!');
-    } catch(e) { alert('❌ Error! Try again.'); }
+        if (riders.find(r => r.username===username)) { alert('❌ Username exist karta hai!'); return; }
+        await saveRider({id:Date.now(), name, username, password, role:'rider'});
+        ['newRiderName','newRiderUser','newRiderPass'].forEach(id => { document.getElementById(id).value=''; });
+        loadRidersList(); populateRiderFilter(); alert('✅ Rider add ho gaya!');
+    } catch(e) { alert('❌ Error!'); }
 }
 
 async function loadRidersList() {
     const container = document.getElementById('ridersList');
     try {
-        const riders = (await getRiders()).filter(r => r.role === 'rider');
-        if (riders.length === 0) {
-            container.innerHTML = '<p style="color:#666; text-align:center;">Koi rider nahi hai.</p>';
-            return;
-        }
-        let html = '';
-        riders.forEach(rider => {
-            html += `<div class="rider-card">
-                <div class="rider-info">
-                    <h4>${rider.name}</h4>
-                    <p>Username: ${rider.username}</p>
-                </div>
+        const riders = (await getRiders()).filter(r => r.role==='rider');
+        if (riders.length===0) { container.innerHTML='<p style="color:#666;text-align:center;">Koi rider nahi.</p>'; return; }
+        container.innerHTML = riders.map(rider => `
+            <div class="rider-card">
+                <div class="rider-info"><h4>${rider.name}</h4><p>Username: ${rider.username}</p></div>
                 <div class="action-btns">
                     <button class="btn btn-secondary btn-small" onclick="resetRiderPassword(${rider.id})">Reset Password</button>
                     <button class="btn btn-danger btn-small" onclick="deleteRider(${rider.id})">Delete</button>
                 </div>
-            </div>`;
-        });
-        container.innerHTML = html;
-    } catch(e) { container.innerHTML = '<p style="color:red;">Load nahi hua.</p>'; }
+            </div>`).join('');
+    } catch(e) { container.innerHTML='<p style="color:red;">Load nahi hua.</p>'; }
 }
 
 async function resetRiderPassword(id) {
-    const newPass = prompt('Naya password enter karein:');
-    if (!newPass) return;
-    try {
-        const riders = await getRiders();
-        const rider = riders.find(r => r.id === id);
-        rider.password = newPass;
-        await saveRider(rider);
-        alert('✅ Password reset ho gaya!');
-    } catch(e) { alert('❌ Error!'); }
+    const newPass = prompt('Naya password:'); if (!newPass) return;
+    try { const riders=await getRiders(); const rider=riders.find(r=>r.id===id); rider.password=newPass; await saveRider(rider); alert('✅ Password reset!'); }
+    catch(e) { alert('❌ Error!'); }
 }
 
 async function deleteRider(id) {
-    if (!confirm('❓ Is rider ko delete karna chahte hain?')) return;
-    try {
-        await deleteRiderFromDB(id);
-        loadRidersList();
-        populateRiderFilter();
-        renderAdminReports();
-        alert('✅ Rider delete ho gaya!');
-    } catch(e) { alert('❌ Error!'); }
+    if (!confirm('❓ Delete karna chahte hain?')) return;
+    try { await deleteRiderFromDB(id); loadRidersList(); populateRiderFilter(); renderAdminReports(); }
+    catch(e) { alert('❌ Error!'); }
 }
 
 async function populateRiderFilter() {
     const select = document.getElementById('filterRider');
     try {
-        const riders = (await getRiders()).filter(r => r.role === 'rider');
-        let html = '<option value="all">All Riders</option>';
-        riders.forEach(r => { html += `<option value="${r.id}">${r.name}</option>`; });
-        select.innerHTML = html;
+        const riders = (await getRiders()).filter(r => r.role==='rider');
+        select.innerHTML = '<option value="all">All Riders</option>' + riders.map(r=>`<option value="${r.id}">${r.name}</option>`).join('');
     } catch(e) {}
 }
 
-// ==================== ADMIN REPORTS ====================
 async function renderAdminReports() {
     const statusFilter = document.getElementById('filterStatus').value;
     const riderFilter = document.getElementById('filterRider').value;
     const container = document.getElementById('allReports');
     container.innerHTML = '<div class="card"><p style="text-align:center;">Load ho raha hai...</p></div>';
-
     try {
         let reports = await getReports();
-        if (statusFilter !== 'all') reports = reports.filter(r => r.status === statusFilter);
-        if (riderFilter !== 'all') reports = reports.filter(r => r.riderId == riderFilter);
-
-        if (reports.length === 0) {
-            container.innerHTML = '<div class="card"><p style="color:#666; text-align:center;">Koi report nahi hai.</p></div>';
-            return;
-        }
-
-        let html = '';
-        reports.reverse().forEach(sub => {
-            const sc = sub.status === 'approved' ? 'status-approved' : sub.status === 'pending' ? 'status-pending' : 'status-rejected';
-            html += `<div class="card">
-                <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:10px;">
+        if (statusFilter!=='all') reports = reports.filter(r => r.status===statusFilter);
+        if (riderFilter!=='all') reports = reports.filter(r => r.riderId==riderFilter);
+        if (reports.length===0) { container.innerHTML='<div class="card"><p style="color:#666;text-align:center;">Koi report nahi.</p></div>'; return; }
+        container.innerHTML = reports.slice().reverse().map(sub => {
+            const sc = sub.status==='approved'?'status-approved':sub.status==='pending'?'status-pending':'status-rejected';
+            return `<div class="card">
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:10px;">
                     <div>
-                        <p style="font-weight:bold; font-size:16px;">${sub.riderName}</p>
-                        <p style="color:#666; font-size:13px;">${sub.displayDate}</p>
+                        <p style="font-weight:bold;font-size:16px;">${sub.riderName}</p>
+                        <p style="color:#666;font-size:13px;">${sub.displayDate}${sub.lastEditedAt?' <span style="color:#f39c12;font-size:11px;">(Rider ne edit kiya)</span>':''}${sub.adminEditedAt?' <span style="color:#3498db;font-size:11px;">(Admin ne edit kiya)</span>':''}</p>
                     </div>
                     <span class="status ${sc}">${sub.status.toUpperCase()}</span>
                 </div>
-                <div class="report-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:15px 0; font-size:13px;">
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0;font-size:13px;">
                     <div>Opening: <strong>Rs. ${sub.openingBalance}</strong></div>
                     <div>Online: <strong style="color:#e94560;">Rs. ${sub.totalOnlinePayments}</strong></div>
                     <div>Fuel: <strong>Rs. ${sub.fuelAmount}</strong></div>
@@ -1166,43 +805,127 @@ async function renderAdminReports() {
                 </div>
                 <div class="action-btns">
                     <button class="btn btn-small" onclick="viewReportDetails(${sub.id})" style="background:#533483;">👁 View</button>
-                    ${sub.status !== 'approved' ? `<button class="btn btn-success btn-small" onclick="updateReportStatus(${sub.id},'approved')">✓ Approve</button>` : ''}
-                    ${sub.status !== 'rejected' ? `<button class="btn btn-warning btn-small" onclick="updateReportStatus(${sub.id},'rejected')">✗ Reject</button>` : ''}
-                    ${sub.status !== 'pending' ? `<button class="btn btn-small" onclick="updateReportStatus(${sub.id},'pending')" style="background:#f39c12;">⏳ Pending</button>` : ''}
+                    <button class="btn btn-info btn-small" onclick="openAdminEditModal(${sub.id})">✏️ Edit</button>
+                    ${sub.status!=='approved'?`<button class="btn btn-success btn-small" onclick="updateReportStatus(${sub.id},'approved')">✓ Approve</button>`:''}
+                    ${sub.status!=='rejected'?`<button class="btn btn-warning btn-small" onclick="updateReportStatus(${sub.id},'rejected')">✗ Reject</button>`:''}
+                    ${sub.status!=='pending'?`<button class="btn btn-small" onclick="updateReportStatus(${sub.id},'pending')" style="background:#f39c12;">⏳ Pending</button>`:''}
                     <button class="btn btn-danger btn-small" onclick="deleteReport(${sub.id})">🗑 Delete</button>
                 </div>
             </div>`;
-        });
-        container.innerHTML = html;
-    } catch(e) {
-        container.innerHTML = '<div class="card"><p style="color:red;">Load nahi hua.</p></div>';
-    }
+        }).join('');
+    } catch(e) { container.innerHTML='<div class="card"><p style="color:red;">Load nahi hua.</p></div>'; }
 }
+
+// ===== ADMIN EDIT MODAL =====
+async function openAdminEditModal(reportId) {
+    try {
+        const reports = await getReports();
+        const report = reports.find(r => r.id===reportId);
+        if (!report) return;
+
+        const paymentsHtml = (report.onlinePayments||[]).map((p,i) => `
+            <div class="payment-edit-box">
+                <h5>💳 Payment ${i+1}</h5>
+                <div class="payment-edit-grid">
+                    <div><span class="admin-edit-label">Customer ID</span><input class="admin-edit-field" id="ae_cust_${i}" value="${p.customer||''}"></div>
+                    <div><span class="admin-edit-label">Naam</span><input class="admin-edit-field" id="ae_name_${i}" value="${p.customerName||''}"></div>
+                    <div><span class="admin-edit-label">Address</span><input class="admin-edit-field" id="ae_addr_${i}" value="${p.customerAddress||''}"></div>
+                    <div><span class="admin-edit-label">Phone</span><input class="admin-edit-field" id="ae_phone_${i}" value="${p.customerPhone||''}"></div>
+                    <div><span class="admin-edit-label">Amount (Rs.)</span><input class="admin-edit-field" type="number" id="ae_amount_${i}" value="${p.amount||0}"></div>
+                    <div><span class="admin-edit-label">Method</span>
+                        <select class="admin-edit-field" id="ae_method_${i}">
+                            <option value="Easypaisa" ${p.method==='Easypaisa'?'selected':''}>Easypaisa</option>
+                            <option value="JazzCash" ${p.method==='JazzCash'?'selected':''}>JazzCash</option>
+                            <option value="Bank" ${p.method==='Bank'?'selected':''}>Bank Transfer</option>
+                            <option value="Other" ${p.method==='Other'?'selected':''}>Other</option>
+                        </select>
+                    </div>
+                    <div><span class="admin-edit-label">Received Status</span>
+                        <select class="admin-edit-field" id="ae_received_${i}">
+                            <option value="pending" ${p.receivedStatus==='pending'?'selected':''}>⏳ Pending</option>
+                            <option value="received" ${p.receivedStatus==='received'?'selected':''}>✅ Received</option>
+                        </select>
+                    </div>
+                </div>
+                ${p.proofImage ? `<div style="margin-top:10px;"><img src="${p.proofImage}" style="max-width:150px;max-height:100px;border-radius:8px;border:2px solid #4caf50;"></div>` : '<p style="color:#ff9800;font-size:12px;margin-top:8px;">⚠️ No proof photo</p>'}
+            </div>`).join('') || '<p style="color:#666;">Koi online payment nahi.</p>';
+
+        document.getElementById('adminEditContent').innerHTML = `
+            <div style="background:#fff3cd;padding:12px;border-radius:8px;margin-bottom:20px;font-size:13px;">
+                <strong>Rider:</strong> ${report.riderName} &nbsp;|&nbsp;
+                <strong>Date:</strong> ${report.displayDate} &nbsp;|&nbsp;
+                <strong>Status:</strong> <span class="status status-${report.status}">${report.status.toUpperCase()}</span>
+            </div>
+            <h4 style="color:#e94560;margin-bottom:15px;">💰 Basic Info</h4>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+                <div><span class="admin-edit-label">Opening Balance (Rs.)</span><input class="admin-edit-field" type="number" id="ae_opening" value="${report.openingBalance||0}"></div>
+                <div><span class="admin-edit-label">Fuel (Rs.)</span><input class="admin-edit-field" type="number" id="ae_fuel" value="${report.fuelAmount||0}"></div>
+                <div><span class="admin-edit-label">Other Expenses (Rs.)</span><input class="admin-edit-field" type="number" id="ae_other" value="${report.otherExpenses||0}"></div>
+                <div><span class="admin-edit-label">Notes</span><input class="admin-edit-field" id="ae_notes" value="${report.notes||''}"></div>
+            </div>
+            <h4 style="color:#e94560;margin-bottom:15px;">💳 Online Payments</h4>
+            ${paymentsHtml}
+            <h4 style="color:#e94560;margin:15px 0 10px;">📋 Report Status</h4>
+            <select class="admin-edit-field" id="ae_status" style="margin-bottom:20px;">
+                <option value="pending" ${report.status==='pending'?'selected':''}>⏳ Pending</option>
+                <option value="approved" ${report.status==='approved'?'selected':''}>✅ Approved</option>
+                <option value="rejected" ${report.status==='rejected'?'selected':''}>❌ Rejected</option>
+            </select>
+            <div style="display:flex;gap:10px;margin-top:10px;">
+                <button class="btn btn-success" onclick="saveAdminEdit(${reportId},${(report.onlinePayments||[]).length})" style="flex:1;">💾 Save Changes</button>
+                <button class="btn btn-danger" onclick="closeAdminEditModal()" style="flex:0.4;">Cancel</button>
+            </div>`;
+
+        document.getElementById('adminEditModal').style.display = 'flex';
+    } catch(e) { alert('❌ Error loading report!'); }
+}
+
+async function saveAdminEdit(reportId, paymentCount) {
+    try {
+        const reports = await getReports();
+        const report = reports.find(r => r.id===reportId);
+        if (!report) return;
+        report.openingBalance = parseFloat(document.getElementById('ae_opening').value)||0;
+        report.fuelAmount = parseFloat(document.getElementById('ae_fuel').value)||0;
+        report.otherExpenses = parseFloat(document.getElementById('ae_other').value)||0;
+        report.notes = document.getElementById('ae_notes').value;
+        report.status = document.getElementById('ae_status').value;
+        for (let i=0; i<paymentCount; i++) {
+            if (report.onlinePayments[i]) {
+                report.onlinePayments[i].customer = document.getElementById(`ae_cust_${i}`)?.value||'';
+                report.onlinePayments[i].customerName = document.getElementById(`ae_name_${i}`)?.value||'';
+                report.onlinePayments[i].customerAddress = document.getElementById(`ae_addr_${i}`)?.value||'';
+                report.onlinePayments[i].customerPhone = document.getElementById(`ae_phone_${i}`)?.value||'';
+                report.onlinePayments[i].amount = parseFloat(document.getElementById(`ae_amount_${i}`)?.value)||0;
+                report.onlinePayments[i].method = document.getElementById(`ae_method_${i}`)?.value||'Easypaisa';
+                report.onlinePayments[i].receivedStatus = document.getElementById(`ae_received_${i}`)?.value||'pending';
+            }
+        }
+        report.totalOnlinePayments = report.onlinePayments.reduce((s,p) => s+(p.amount||0), 0);
+        report.closingBalance = report.openingBalance - report.totalOnlinePayments - report.fuelAmount - report.otherExpenses;
+        report.adminEditedAt = new Date().toISOString();
+        await saveReport(report);
+        closeAdminEditModal(); renderAdminReports(); renderOnlinePayments();
+        alert('✅ Report update ho gaya!');
+    } catch(e) { alert('❌ Save nahi hua!'); }
+}
+
+function closeAdminEditModal() { document.getElementById('adminEditModal').style.display = 'none'; }
 
 async function viewReportDetails(id) {
     try {
         const reports = await getReports();
-        const report = reports.find(r => r.id === id);
+        const report = reports.find(r => r.id===id);
         if (!report) return;
-
-        let onlineHtml = '<h4 style="margin:15px 0 10px; color:#e94560;">💳 Online Payments:</h4>';
-        if (report.onlinePayments && report.onlinePayments.length > 0) {
-            report.onlinePayments.forEach((p, i) => {
-                const rb = p.receivedStatus === 'received' ?
-                    '<span class="status status-received" style="margin-left:10px;">✓ RECEIVED</span>' :
-                    '<span class="status status-pending" style="margin-left:10px;">⏳ PENDING</span>';
-                let proofHtml = p.proofImage ?
-                    `<div style="margin-top:8px;"><img src="${p.proofImage}" style="max-width:200px;max-height:150px;border-radius:8px;border:2px solid #4caf50;"><span class="proof-badge">✓ Delivery Proof</span></div>` :
-                    '<p style="color:#ff9800;font-size:12px;margin-top:5px;">⚠️ No proof photo</p>';
-                onlineHtml += `<div style="background:#fff3cd;padding:10px;margin:5px 0;border-radius:8px;">
-                    <strong>Payment ${i+1}:</strong> ${p.customer} | Rs. ${p.amount} | ${p.method} ${rb}
-                    ${p.customerName ? `<br><small>Naam: ${p.customerName} | Address: ${p.customerAddress} | Phone: ${p.customerPhone}</small>` : ''}
-                    ${proofHtml}
-                </div>`;
-            });
-        } else {
-            onlineHtml += '<p style="color:#666;">Koi online payment nahi.</p>';
-        }
+        const onlineHtml = (report.onlinePayments && report.onlinePayments.length>0)
+            ? report.onlinePayments.map((p,i) => `
+                <div style="background:#fff3cd;padding:10px;margin:5px 0;border-radius:8px;">
+                    <strong>Payment ${i+1}:</strong> ${p.customer} | Rs. ${p.amount} | ${p.method}
+                    <span class="status ${p.receivedStatus==='received'?'status-received':'status-pending'}" style="margin-left:10px;">${p.receivedStatus==='received'?'✓ RECEIVED':'⏳ PENDING'}</span>
+                    ${p.customerName?`<br><small style="color:#555;">Naam: ${p.customerName} | Phone: ${p.customerPhone}</small>`:''}
+                    ${p.proofImage?`<div style="margin-top:8px;"><img src="${p.proofImage}" style="max-width:200px;max-height:150px;border-radius:8px;border:2px solid #4caf50;"></div>`:'<p style="color:#ff9800;font-size:12px;margin-top:5px;">⚠️ No proof</p>'}
+                </div>`).join('')
+            : '<p style="color:#666;">Koi online payment nahi.</p>';
 
         document.getElementById('reportModalContent').innerHTML = `
             <div style="margin-bottom:20px;">
@@ -1211,17 +934,17 @@ async function viewReportDetails(id) {
                 <p><strong>Status:</strong> <span class="status status-${report.status}">${report.status.toUpperCase()}</span></p>
             </div>
             <div style="background:#f8f9fa;padding:15px;border-radius:10px;margin-bottom:15px;">
-                <p><strong>Opening Balance:</strong> Rs. ${report.openingBalance}</p>
+                <p><strong>Opening:</strong> Rs. ${report.openingBalance}</p>
                 <p><strong>Online Payments:</strong> Rs. ${report.totalOnlinePayments}</p>
                 <p><strong>Fuel:</strong> Rs. ${report.fuelAmount}</p>
-                <p><strong>Other Expenses:</strong> Rs. ${report.otherExpenses}</p>
-                <p><strong>Closing Balance:</strong> Rs. ${(report.closingBalance||0).toFixed(2)}</p>
-                ${report.notes ? `<p><strong>Notes:</strong> ${report.notes}</p>` : ''}
+                <p><strong>Other:</strong> Rs. ${report.otherExpenses}</p>
+                <p><strong>Closing:</strong> Rs. ${(report.closingBalance||0).toFixed(2)}</p>
+                ${report.notes?`<p><strong>Notes:</strong> ${report.notes}</p>`:''}
             </div>
-            ${onlineHtml}
-        `;
+            <h4 style="margin:15px 0 10px;color:#e94560;">💳 Online Payments:</h4>
+            ${onlineHtml}`;
         document.getElementById('reportModal').style.display = 'flex';
-    } catch(e) { alert('Error loading report.'); }
+    } catch(e) { alert('Error!'); }
 }
 
 function closeReportModal() { document.getElementById('reportModal').style.display = 'none'; }
@@ -1229,61 +952,39 @@ function closeReportModal() { document.getElementById('reportModal').style.displ
 async function updateReportStatus(id, status) {
     try {
         const reports = await getReports();
-        const report = reports.find(r => r.id === id);
-        if (report) {
-            report.status = status;
-            await saveReport(report);
-            renderAdminReports();
-            renderOnlinePayments();
-            alert(`✅ Report ${status} kar diya!`);
-        }
+        const report = reports.find(r => r.id===id);
+        if (report) { report.status=status; await saveReport(report); renderAdminReports(); renderOnlinePayments(); alert(`✅ Report ${status} ho gaya!`); }
     } catch(e) { alert('❌ Error!'); }
 }
 
 async function deleteReport(id) {
     if (!confirm('❓ Report delete karna chahte hain?')) return;
-    try {
-        await deleteReportFromDB(id);
-        renderAdminReports();
-        renderOnlinePayments();
-    } catch(e) { alert('❌ Error!'); }
+    try { await deleteReportFromDB(id); renderAdminReports(); renderOnlinePayments(); }
+    catch(e) { alert('❌ Error!'); }
 }
 
-// ==================== ONLINE PAYMENTS ADMIN ====================
+// ===== ONLINE PAYMENTS ADMIN =====
 async function renderOnlinePayments() {
     const container = document.getElementById('onlinePaymentsList');
     container.innerHTML = '<div class="card"><p style="text-align:center;">Load ho raha hai...</p></div>';
     try {
         const reports = await getReports();
         let allPayments = [];
-        reports.forEach(r => {
-            if (r.onlinePayments && r.onlinePayments.length > 0) {
-                r.onlinePayments.forEach((p, idx) => {
-                    allPayments.push({ ...p, reportId: r.id, riderName: r.riderName, date: r.displayDate, reportStatus: r.status, paymentIndex: idx });
-                });
-            }
-        });
-
-        if (allPayments.length === 0) {
-            container.innerHTML = '<div class="card"><p style="color:#666;text-align:center;">Koi online payment nahi.</p></div>';
-            return;
-        }
-
-        let html = '';
-        allPayments.reverse().forEach(p => {
-            const isReceived = p.receivedStatus === 'received';
-            const receivedBtn = isReceived ?
-                `<span class="status status-received"><i class="fas fa-check-double"></i> RECEIVED</span>` :
-                `<button class="btn btn-small received-btn" onclick="markPaymentReceived(${p.reportId},${p.paymentIndex})"><i class="fas fa-check"></i> Mark Received</button>`;
-            const proofDisplay = p.proofImage ?
-                `<div style="margin-top:8px;"><img src="${p.proofImage}" style="max-width:150px;max-height:100px;border-radius:6px;border:2px solid #4caf50;"><span class="proof-badge"><i class="fas fa-camera"></i> Proof</span></div>` :
-                '<p style="color:#ff9800;font-size:12px;"><i class="fas fa-exclamation-triangle"></i> No proof</p>';
-
-            html += `<div class="card" style="border-left-color:${isReceived ? '#10b981' : '#25d366'};">
+        reports.forEach(r => { (r.onlinePayments||[]).forEach((p,idx) => { allPayments.push({...p,reportId:r.id,riderName:r.riderName,date:r.displayDate,reportStatus:r.status,paymentIndex:idx}); }); });
+        if (allPayments.length===0) { container.innerHTML='<div class="card"><p style="color:#666;text-align:center;">Koi online payment nahi.</p></div>'; return; }
+        container.innerHTML = allPayments.reverse().map(p => {
+            const isReceived = p.receivedStatus==='received';
+            const receivedBtn = isReceived
+                ? `<span class="status status-received"><i class="fas fa-check-double"></i> RECEIVED</span>`
+                : `<button class="btn btn-small received-btn" onclick="markPaymentReceived(${p.reportId},${p.paymentIndex})"><i class="fas fa-check"></i> Mark Received</button>`;
+            const proofDisplay = p.proofImage
+                ? `<div style="margin-top:8px;"><img src="${p.proofImage}" style="max-width:150px;max-height:100px;border-radius:6px;border:2px solid #4caf50;"><span class="proof-badge"><i class="fas fa-camera"></i> Proof</span></div>`
+                : '<p style="color:#ff9800;font-size:12px;"><i class="fas fa-exclamation-triangle"></i> No proof</p>';
+            return `<div class="card" style="border-left-color:${isReceived?'#10b981':'#25d366'};">
                 <div style="display:flex;justify-content:space-between;align-items:start;">
                     <div>
                         <p style="font-weight:bold;">${p.customer}</p>
-                        ${p.customerName ? `<p style="font-size:13px;color:#555;">${p.customerName} | ${p.customerPhone}</p>` : ''}
+                        ${p.customerName?`<p style="font-size:13px;color:#555;">${p.customerName} | ${p.customerPhone}</p>`:''}
                         <p style="font-size:12px;color:#666;">${p.riderName} | ${p.date} | ${p.method}</p>
                         ${proofDisplay}
                     </div>
@@ -1300,22 +1001,17 @@ async function renderOnlinePayments() {
                     <button class="btn btn-small" onclick="viewReportDetails(${p.reportId})" style="background:#533483;">👁 View</button>
                 </div>
             </div>`;
-        });
-        container.innerHTML = html;
-    } catch(e) {
-        container.innerHTML = '<div class="card"><p style="color:red;">Load nahi hua.</p></div>';
-    }
+        }).join('');
+    } catch(e) { container.innerHTML='<div class="card"><p style="color:red;">Load nahi hua.</p></div>'; }
 }
 
 async function markPaymentReceived(reportId, paymentIndex) {
     try {
         const reports = await getReports();
-        const report = reports.find(r => r.id === reportId);
+        const report = reports.find(r => r.id===reportId);
         if (report && report.onlinePayments[paymentIndex]) {
             report.onlinePayments[paymentIndex].receivedStatus = 'received';
-            await saveReport(report);
-            renderOnlinePayments();
-            alert('✅ Payment received mark ho gaya!');
+            await saveReport(report); renderOnlinePayments(); alert('✅ Payment received!');
         }
     } catch(e) { alert('❌ Error!'); }
 }
@@ -1323,35 +1019,25 @@ async function markPaymentReceived(reportId, paymentIndex) {
 function sendWhatsAppReminder(customerEnc, amount, date, riderEnc, phone) {
     const customer = decodeURIComponent(customerEnc);
     const riderName = decodeURIComponent(riderEnc);
-    const msg = encodeURIComponent(
-        `Assalam-o-Alaikum ${customer},\n\nHFC Restaurant se reminder.\nOnline payment pending hai.\n\nAmount: Rs. ${amount}\nDate: ${date}\nRider: ${riderName}\n\nJald payment karein.\nShukriya!`
-    );
-    const url = phone ? `https://wa.me/92${phone.replace(/^0/, '')}?text=${msg}` : `https://wa.me/?text=${msg}`;
-    window.open(url, '_blank');
+    const msg = encodeURIComponent(`Assalam-o-Alaikum ${customer},\n\nHFC Restaurant se reminder.\nOnline payment pending hai.\n\nAmount: Rs. ${amount}\nDate: ${date}\nRider: ${riderName}\n\nJald payment karein.\nShukriya!`);
+    window.open(phone ? `https://wa.me/92${phone.replace(/^0/,'')}?text=${msg}` : `https://wa.me/?text=${msg}`, '_blank');
 }
 
-// ==================== CUSTOMER MANAGEMENT ====================
+// ===== CUSTOMERS =====
 async function addCustomer() {
     const id = document.getElementById('newCustId').value.trim().toUpperCase();
     const name = document.getElementById('newCustName').value.trim();
     const address = document.getElementById('newCustAddr').value.trim();
     const phone = document.getElementById('newCustPhone').value.trim();
-
-    if (!id || !name || !address || !phone) {
-        showAlert('custAlert', '❌ Sari fields fill karein!', 'error'); return;
-    }
+    if (!id||!name||!address||!phone) { showAlert('custAlert','❌ Sari fields fill karein!','error'); return; }
     try {
-        await saveCustomerToDB(id, { name, address, phone });
-        document.getElementById('newCustId').value = '';
-        document.getElementById('newCustName').value = '';
-        document.getElementById('newCustAddr').value = '';
-        document.getElementById('newCustPhone').value = '';
+        await saveCustomerToDB(id, {name, address, phone});
+        ['newCustId','newCustName','newCustAddr','newCustPhone'].forEach(i => { document.getElementById(i).value=''; });
         document.getElementById('newCustId').readOnly = false;
         document.getElementById('newCustId').style.background = '';
         renderCustomersList();
-        showAlert('custAlert', `✅ Customer ${id} save ho gaya!`, 'success');
-        setTimeout(() => { const el = document.getElementById('custAlert'); if(el) el.innerHTML=''; }, 3000);
-    } catch(e) { showAlert('custAlert', '❌ Error! Try again.', 'error'); }
+        showAlert('custAlert',`✅ Customer ${id} save ho gaya!`,'success');
+    } catch(e) { showAlert('custAlert','❌ Error!','error'); }
 }
 
 function editCustomer(id, name, address, phone) {
@@ -1361,60 +1047,39 @@ function editCustomer(id, name, address, phone) {
     document.getElementById('newCustPhone').value = phone;
     document.getElementById('newCustId').readOnly = true;
     document.getElementById('newCustId').style.background = '#f0f0f0';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({top:0,behavior:'smooth'});
 }
 
 async function deleteCustomer(id) {
-    if (!confirm(`❓ "${id}" customer delete karna chahte hain?`)) return;
-    try {
-        await deleteCustomerFromDB(id);
-        renderCustomersList();
-    } catch(e) { alert('❌ Error!'); }
+    if (!confirm(`❓ "${id}" delete karna chahte hain?`)) return;
+    try { await deleteCustomerFromDB(id); renderCustomersList(); } catch(e) { alert('❌ Error!'); }
 }
 
 async function renderCustomersList() {
     const container = document.getElementById('customersList');
     if (!container) return;
-    const search = document.getElementById('custSearch')?.value.toLowerCase() || '';
+    const search = document.getElementById('custSearch')?.value.toLowerCase()||'';
     container.innerHTML = '<p style="text-align:center;color:#666;">Load ho raha hai...</p>';
     try {
         const db = await getCustomerDB();
-        const entries = Object.entries(db).filter(([id, c]) =>
-            id.toLowerCase().includes(search) ||
-            c.name.toLowerCase().includes(search) ||
-            (c.phone && c.phone.includes(search))
+        const entries = Object.entries(db).filter(([id,c]) =>
+            id.toLowerCase().includes(search)||c.name.toLowerCase().includes(search)||(c.phone&&c.phone.includes(search))
         );
-        if (entries.length === 0) {
-            container.innerHTML = '<p style="color:#666;text-align:center;">Koi customer nahi mila.</p>';
-            return;
-        }
-        let html = `<table><thead><tr><th>ID</th><th>Naam</th><th>Address</th><th>Phone</th><th>Action</th></tr></thead><tbody>`;
-        entries.forEach(([id, c]) => {
-            html += `<tr>
+        if (entries.length===0) { container.innerHTML='<p style="color:#666;text-align:center;">Koi customer nahi mila.</p>'; return; }
+        container.innerHTML = `<table><thead><tr><th>ID</th><th>Naam</th><th>Address</th><th>Phone</th><th>Action</th></tr></thead><tbody>` +
+            entries.map(([id,c]) => `<tr>
                 <td><strong style="color:#e94560;">${id}</strong></td>
-                <td>${c.name}</td>
-                <td>${c.address}</td>
-                <td>${c.phone}</td>
+                <td>${c.name}</td><td>${c.address}</td><td>${c.phone}</td>
                 <td>
-                    <button onclick="editCustomer('${id}','${c.name.replace(/'/g,"\\'")}','${c.address.replace(/'/g,"\\'")}','${c.phone}')"
-                        style="background:#533483;color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;margin-right:5px;">✏️ Edit</button>
-                    <button onclick="deleteCustomer('${id}')"
-                        style="background:#e74c3c;color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;">🗑</button>
+                    <button onclick="editCustomer('${id}','${c.name.replace(/'/g,"\\'")}','${c.address.replace(/'/g,"\\'")}','${c.phone}')" style="background:#533483;color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;margin-right:5px;">✏️</button>
+                    <button onclick="deleteCustomer('${id}')" style="background:#e74c3c;color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;">🗑</button>
                 </td>
-            </tr>`;
-        });
-        html += '</tbody></table>';
-        container.innerHTML = html;
-    } catch(e) {
-        container.innerHTML = '<p style="color:red;">Load nahi hua.</p>';
-    }
+            </tr>`).join('') + '</tbody></table>';
+    } catch(e) { container.innerHTML='<p style="color:red;">Load nahi hua.</p>'; }
 }
 
-// ==================== MODAL CLOSE ====================
 window.onclick = function(event) {
-    document.querySelectorAll('.modal-overlay').forEach(modal => {
-        if (event.target === modal) modal.style.display = 'none';
-    });
+    document.querySelectorAll('.modal-overlay').forEach(modal => { if (event.target===modal) modal.style.display='none'; });
 };
 </script>
 </body>
